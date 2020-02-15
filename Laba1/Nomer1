@@ -1,68 +1,84 @@
 package Laba1;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 public class Nomer1 {
-    static Scanner inp = new Scanner(System.in);
-    public static void main(String[] args) {
-        try {
-            System.out.println("Введите размер массива ");
-            int n = inp.nextInt();
-            double mas [] = new double [n];
-            write(mas,mas.length / 2);
-            double mas1 [] = new double [n - n / 2];
-            randomwrite(mas1, mas1.length);
-            int k = 0;
-            for (int i = 0; i < mas.length; i++) {
-                if ( mas[i] == 0 ){
-                    mas[i] = mas1[k];
-                    k++;
-                }
-            }
-            for (int i = 0; i < mas.length; i++) {
-                System.out.print(mas[i] + " ");
-            }
+	static Scanner inp = new Scanner(System.in);
 
-            double masy [] = new double [n];
-            for (int i = 0; i < masy.length; i++) {
-                masy[i] = func(mas[i]);
-            }
+	public static void main(String[] args) {
+		try {
+			System.out.println("Введите размер массива ");
+			int n = inp.nextInt();
+			double mas[] = new double[n];
+			System.out.println("Введите k1 ");
+			int k1 = inp.nextInt();
+			System.out.println("Введите k2 ");
+			int k2 = inp.nextInt();
+			randomwrite(mas, 0, mas.length);
+			write(mas, k1, k2);
+			for (int i = 0; i < mas.length; i++) {
+				System.out.print(mas[i] + " ");
+			}
+			double masy[] = new double[n];
+			for (int i = 0; i < masy.length; i++) {
+				masy[i] = func(mas[i]);
+				System.out.print(mas[i] + " ");
+			}
+			int tochki = 0;
+			for (int i = 0; i < masy.length; i++) {
+				double x = mas[i];
+				double y = masy[i];
+				if (x >= -4 && x <= 0 && y >= -4 && y <= 4 || (y <= x - 4 && y >= 0 && x >= 0)) {
+					tochki++;
+					System.out.println(
+							"Точка с координатами х = " + x + "; y = " + y + " входит в заштрихованную область");
+				}
+			}
+			System.out.println("Количество вошедших точек = " + tochki);
+			double lin = 0;
+			for (int i = 0; i < mas.length - 1; i++) {
+				lin += Math.sqrt(Math.pow(mas[i + 1] - mas[i], 2) + Math.pow(mas[i + 1] - mas[i], 2));
+			}
+			System.out.println("Длина ломаной линии, соединяющей точки = " + lin);
+		} catch (InputMismatchException e) {
+			System.out.println("Ошибка! Необходимо ввести число");
+		} catch (ArithmeticException e) {
+			System.out.println("Ошибка! Расчет не получается");
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("Ошибка! Произошел выход за границы массива. Введенные данные не корректны");
+		} catch (Exception e) {
+			System.out.println("Какая-то ошибка");
+		}
+	}
 
-        } catch (InputMismatchException e){
-            System.out.println("Необходимо ввести число");
-        } catch (ArithmeticException e){
-            System.out.println("Расчет не получается");
-        } catch (ArrayIndexOutOfBoundsException e){
-            System.out.println("Произошел выход за границы массива. Введенные данные не корректны!");
-        }
-    }
+	public static double func(double x) {
+		int a = (int) (-50 + Math.random() * 100);
+		double f = 0;
+		if (x < 0)
+			f = x + Math.pow(Math.sin((1 / x - a) + 4), 2);
+		if (x >= 0)
+			f = a * x / Math.sqrt(a * a - x * x);
+		return f;
+	}
 
-    public static double func(double x){
-        int a = (int)( -50 + Math.random() * 100);
-        double f = 0;
-        if ( x < 0 )
-            f = x + Math.pow(Math.sin( (1 / x - a) + 4 ), 2);
-        if ( x >= 0 )
-            f = a * x / Math.sqrt( a * a - x * x );
-        return f;
-    }
+	public static double[] write(double ms[], int k1, int k2) throws ArrayIndexOutOfBoundsException {
+		if (k1 < 0 || k2 > ms.length)
+			throw new ArrayIndexOutOfBoundsException();
+		for (int i = k1; i < k2; i++) {
+			System.out.println("Введите число в массив ");
+			ms[i] = inp.nextDouble();
+		}
+		return ms;
+	}
 
-    public static double[] write(double ms [],int k){
-        for (int i = 0; i < k; i++) {
-            System.out.println("Введите число в массив ");
-            ms[i] = inp.nextDouble();
-        }
-        return ms;
-    }
-
-    public static double[] randomwrite(double ms [], int k){
-        System.out.println("Введите левую границу диапазона ");
-        int a = inp.nextInt();
-        System.out.println("Введите правую границу диапазона ");
-        int b = inp.nextInt();
-        for (int i = 0; i < k; i++) {
-            ms[i] = a + Math.random() * b;
-        }
-        return ms;
-    }
+	public static double[] randomwrite(double ms[], int k1, int k2) throws ArrayIndexOutOfBoundsException {
+		if (k1 < 0 || k2 > ms.length)
+			throw new ArrayIndexOutOfBoundsException();
+		for (int i = k1; i < k2; i++) {
+			ms[i] = -100 + Math.random() * 200;
+		}
+		return ms;
+	}
 
 }
