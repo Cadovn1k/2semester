@@ -27,18 +27,22 @@ public class Nomer1 {
 			}
 			int tochki = 0;
 			for (int i = 0; i < masy.length; i++) {
-				double x = mas[i];
-				double y = masy[i];
-				if (x >= -4 && x <= 0 && y >= -4 && y <= 4 || (y <= x - 4 && y >= 0 && x >= 0)) {
-					tochki++;
-					System.out.println(
-							"Точка с координатами х = " + x + "; y = " + y + " входит в заштрихованную область");
+				if (!Double.isInfinite(masy[i])) {
+					double x = mas[i];
+					double y = masy[i];
+					if (x >= -4 && x <= 0 && y >= -4 && y <= 4 || (y <= x - 4 && y >= 0 && x >= 0)) {
+						tochki++;
+						System.out.println(
+								"Точка с координатами х = " + x + "; y = " + y + " входит в заштрихованную область");
+					}
 				}
 			}
-			System.out.println("Количество вошедших точек = " + tochki);
+			System.out.println("\nКоличество вошедших точек = " + tochki);
 			double lin = 0;
 			for (int i = 0; i < mas.length - 1; i++) {
-				lin += Math.sqrt(Math.pow(mas[i + 1] - mas[i], 2) + Math.pow(mas[i + 1] - mas[i], 2));
+				if (Double.isInfinite(masy[i]))
+					throw new ArithmeticException();
+				lin += Math.sqrt(Math.pow(mas[i + 1] - mas[i], 2) + Math.pow(masy[i + 1] - masy[i], 2));
 			}
 			System.out.println("Длина ломаной линии, соединяющей точки = " + lin);
 		} catch (InputMismatchException e) {
