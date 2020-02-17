@@ -1,0 +1,28 @@
+package Laba1;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class Nomer2 {
+	static Random rnd = new Random();
+	static Scanner inp = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		System.out.println("Какой длины текст вы хотите ввести ");
+		int length = inp.nextInt();
+		For2 txta = new For2();
+		txta.setTxt(txta.gnra(length));
+		System.out.println(txta.getTxt());
+		txta.setTxt(txta.gnrb(length));
+		System.out.println(txta.getTxt());
+		System.out.println("Введите левую границу диапазона ");
+		int k1 = inp.nextInt();
+		System.out.println("Введите правую границу диапазона ");
+		int k2 = inp.nextInt();
+		txta.setTxt(txta.gnrv(length, k1, k2));
+		System.out.println(txta.getTxt());
+		String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZабвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+		txta.setTxt(txta.gnrc(length, chars, rnd));
+		System.out.println(txta.getTxt());
+	}
+}
