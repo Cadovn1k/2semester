@@ -1,58 +1,129 @@
 package Laba2;
-
 import java.io.File;
-
 public class Number1 {
-	public static void main(String[] args) throws Exception {
-		try {
-			File file = new File("basedir\\dir0");
-			int a = file.listFiles().length;
-			System.out.println(a);
-			System.out.println("Имена катологов в каталоге : ");
-			for (File item : file.listFiles()) {
-				if (item.isDirectory())
-					System.out.print(item.getName() + " ");
-			}
-			int sum = 0;
-			System.out.println();
-			System.out.println("Имена файлов : ");
-			for (File item : file.listFiles()) {
-				if (item.isFile()) {
-					System.out.print(item.getName() + " ");
-					sum++;
-				}
-			}
-			System.out.println();
-			System.out.println("Количество файлов = " + sum);
-			file = new File("елки.txt");
-			System.out.println("Абсолютный путь файла елки.txt - " + file.getAbsolutePath());
-			file = new File("basedir\\dir0");
-			System.out.println("Размер свободного дискового пространства = " + file.getFreeSpace());
-			System.out.println("Диски : ");
-			int sum2 = 0;
-			for (File disk : File.listRoots()) {
-				System.out.println(disk.getPath());
-				sum2++;
-			}
-			System.out.println("Количество дисков = " + sum2);
-			System.out.println("Имена всех вложенных файлов и директорий : "); // использовать метод с рекурсией, чтьобы
-																				// заходить внутрь файлов до конца
-			searchfiles(file);
-		} catch (Exception e) {
-			System.out.println("Error");
-		}
-	}
 
-	public static void searchfiles(File directory) {
-		File[] file = directory.listFiles();
-		if (file != null) {
-			for (File f : file) {
-				final String path = f.getAbsolutePath();
-				if (f.isDirectory() && !f.isHidden())
-					searchfiles(f);
-				System.out.println(path);
-			}
-		}
+    public static void main(String[] args) throws Exception {
 
-	}
+        try {
+
+            File file = new File("basedir\\dir0");
+
+            int a = file.listFiles().length;
+
+            System.out.println(a);
+
+            System.out.println("Имена катологов в каталоге : ");
+
+            for (File item : file.listFiles()) {
+
+                if (item.isDirectory())
+
+                    System.out.print(item.getName() + " ");
+
+            }
+
+            int sum = 0;
+
+            System.out.println();
+
+            System.out.println("Имена файлов : ");
+
+            for (File item : file.listFiles()) {
+
+                if (item.isFile()) {
+
+                    System.out.print(item.getName() + " ");
+
+                    sum++;
+
+                }
+
+            }
+
+            System.out.println();
+
+            System.out.println("Количество файлов = " + sum);
+
+            file = new File("елки.txt");
+
+            System.out.println("Абсолютный путь файла елки.txt - " + file.getAbsolutePath());
+
+            file = new File("basedir\\dir0");
+
+            System.out.println("Размер свободного дискового пространства = " + file.getFreeSpace());
+
+            System.out.println("Диски : ");
+
+            int sum2 = 0;
+
+            for (File disk : File.listRoots()) {
+
+                System.out.println(disk.getPath());
+
+                sum2++;
+
+            }
+
+            System.out.println("Количество дисков = " + sum2);
+            file = new File("basedir");
+            System.out.print("Имена всех вложенных файлов и директорий : ");
+            searchfiles(file);
+            System.out.println();
+            System.out.print("Имена всех пустых директорий : ");
+            searchnullfiles(file);
+            System.out.println();
+            System.out.print("Имя директории с максимальным количеством файлов : ");
+            System.out.println(searchmaxfiles(file,0,""));
+
+        } catch (Exception e) {
+
+            System.out.println("Error");
+
+        }
+
+    }
+
+
+
+    public static void searchfiles(File file) {
+
+        if (file != null) {
+            for (File item : file.listFiles()) {
+                    System.out.print(item.getName() + " ");
+                    if (item.isDirectory()) {
+                        System.out.print(item.getName() + " ");
+                        searchfiles(item);
+                    }
+
+            }
+
+        }
+
+    }
+
+     public static void searchnullfiles(File file){
+        if ( file != null ){
+            for ( File item : file.listFiles()){
+                if ( item.isDirectory() && item.list().length == 0 && !item.isFile() )
+                    System.out.print(item.getName() + " ");
+                if (item.isDirectory())
+                    searchnullfiles(item);
+            }
+        }
+     }
+
+    public static String searchmaxfiles(File file,int n, String maxpath){
+        if ( file != null ){
+            for ( File item : file.listFiles()){
+                if ( item.listFiles().length > n ) {
+                    n = item.listFiles().length;
+                    maxpath = item.getName();
+                }
+                if ( item.isDirectory() )
+                    searchmaxfiles(item, n, maxpath);
+            }
+        }
+        return maxpath;
+    }
+    
 }
