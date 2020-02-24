@@ -47,8 +47,7 @@ public class For2 {
 
 	public static String gnrb(int length) {
 		char[] txt = new char[length];
-		int nn = (int) (Math.random() * 1114112);
-		txt[0] = (char) nn;
+		txt[0] = (char) (int) (Math.random() * 1114112);
 		for (int i = 1; i < txt.length; i++) {
 			int n = (int) (Math.random() * 1114112);
 			txt[i] = (char) n;
@@ -73,5 +72,86 @@ public class For2 {
 			txt[i] = characters.charAt(rnd.nextInt(characters.length()));
 		}
 		return new String(txt);
+	}
+
+	public double chance(String str, char symbol) {
+		double ch = 0;
+		for (int i = 0; i < str.length(); i++) {
+			if (symbol == str.charAt(i))
+				ch++;
+		}
+		return ch / str.length();
+	}
+
+	public double hartley(String str) {
+		return str.length() * (Math.log10(str.length()) / Math.log10(2));
+	}
+
+	public double shennon(String str) {
+		return Math.log10(str.length()) / Math.log10(2);
+	}
+
+	public Boolean isPalindrome(String str) {
+		for (int i = 0; i < str.length() / 2; ++i) {
+			if (str.charAt(i) != str.charAt(str.length() - i - 1)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public Boolean isPalindromeRecursion(String str, int n1, int n2) {
+		if (str.charAt(n1) != str.charAt(n2))
+			return false;
+		else
+			isPalindromeRecursion(str, n1++, n2--);
+		if (n1 >= n2)
+			return true;
+		return true;
+	}
+
+	public String createPalindrom(String str) {
+		StringBuffer str1 = new StringBuffer(str);
+		str1.reverse();
+		return str + str1;
+	}
+
+	public String deletewords(String str, String chars) {
+		for (int i = 0; i < chars.length(); i++) {
+			for (int j = 0; j < str.length(); j++) {
+				if (chars.charAt(i) == str.charAt(j))
+					str = str.replace(Character.toString(str.charAt(j)), "");
+			}
+		}
+		return str;
+	}
+
+	public String shift(String str, String side, int n) {
+		if (side.equalsIgnoreCase("left")) {
+			int nn = 0;
+			while ( nn < n ) {
+				char word = str.charAt(0);
+				for (int i = 1; i < str.length(); i++) {
+					str.replace(str.charAt(i - 1), str.charAt(i));
+					if ( i == str.length() - 1 )
+						str.replace(str.charAt(i), word);
+				}
+				nn++;
+			}
+		}
+		if (side.equalsIgnoreCase("right")) {
+			int nn = 0;			
+			while ( nn < n ) {
+				char word = str.charAt(str.length() - 1);
+				for (int i = str.length() - 2; i > 0; i--) {
+					str.replace(str.charAt(i + 1), str.charAt(i));
+					if ( i == 0 )
+						str.replace(str.charAt(i), word);
+				}
+				nn++;
+			}
+		}
+		
+		return str;
 	}
 }
