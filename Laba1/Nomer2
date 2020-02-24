@@ -8,21 +8,46 @@ public class Nomer2 {
 	static Scanner inp = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		System.out.println("Какой длины текст вы хотите ввести ");
-		int length = inp.nextInt();
-		For2 txta = new For2();
-		txta.setTxt(txta.gnra(length));
-		System.out.println(txta.getTxt());
-		txta.setTxt(txta.gnrb(length));
-		System.out.println(txta.getTxt());
-		System.out.println("Введите левую границу диапазона ");
-		int k1 = inp.nextInt();
-		System.out.println("Введите правую границу диапазона ");
-		int k2 = inp.nextInt();
-		txta.setTxt(txta.gnrv(length, k1, k2));
-		System.out.println(txta.getTxt());
-		String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZабвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
-		txta.setTxt(txta.gnrc(length, chars, rnd));
-		System.out.println(txta.getTxt());
+		try {
+			System.out.println("Какой длины текст вы хотите ввести ");
+			int length = inp.nextInt();
+			For2 txta = new For2();
+			txta.setTxt(txta.gnra(length));
+			System.out.println(txta.getTxt());
+			txta.setTxt(txta.gnrb(length));
+			System.out.println(txta.getTxt());
+			System.out.println("Введите левую границу диапазона ");
+			int k1 = inp.nextInt();
+			System.out.println("Введите правую границу диапазона ");
+			int k2 = inp.nextInt();
+			txta.setTxt(txta.gnrv(length, k1, k2));
+			System.out.println(txta.getTxt());
+			String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZабвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+			txta.setTxt(txta.gnrc(length, chars, rnd));
+			System.out.println(txta.getTxt());
+			char ch = (char) (int) (Math.random() * 1114112);
+			System.out.printf("Вероятность символа %c в сообщении %s имеет вероятность = %f", ch, txta.getTxt(),
+					txta.chance(txta.getTxt(), ch));
+			System.out.println();
+			System.out.printf("Количество инфоормации в сообщении %s по формуле Хартли = %f", txta.getTxt(),
+					txta.hartley(txta.getTxt()));
+			System.out.println();
+			System.out.printf("Количество инфоормации в сообщении %s по формуле Шеннона = %f", txta.getTxt(),
+					txta.shennon(txta.getTxt()));
+			System.out.println();
+			System.out.println("Является ли сообщение палиндромом итерационно - " + txta.isPalindrome(txta.getTxt()));
+			System.out.println("Является ли сообщение палиндромом рекурсивно - "
+					+ txta.isPalindromeRecursion(txta.getTxt(), 0, txta.getTxt().length() - 1));
+			System.out.println("Построим сообщение-палиндром = " + txta.createPalindrom(txta.getTxt()));
+			System.out.println("Введите в одну строку символы, которые хотите удалить ");
+			String chs = inp.next();
+			System.out.println("Теперь сообщение имеет вид : " + txta.deletewords(txta.getTxt(), chs));
+//		System.out.printf("Сдвинем сообщение вправо на 3 = " + txta.shift(txta.getTxt(), "right", 3)); // не работает
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("Ошибка! Произошел выход за границы массива. Введенные данные не корректны");
+		} catch (Exception e) {
+			System.out.println("Какая-то ошибка");
+		}
 	}
 }
+
