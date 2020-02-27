@@ -1,63 +1,163 @@
 package Laba2;
 
+
+
 import java.io.File;
+
 import java.util.Scanner;
 
+
+
 public class Number2 {
-	static Scanner inp = new Scanner(System.in);
 
-	public static void main(String[] args) {
-		try {
-			File file = new File("basedir\\Picture");
-			if (!file.exists()) {
-				if (file.mkdir())
-					System.out.println("Создана директория Picture");
-			}
+    static Scanner inp = new Scanner(System.in);
 
-			file = new File("basedir\\Texts\\History");
-			if (!file.exists()) {
-				if (file.mkdirs())
-					System.out.println("Создана директория Texts и History");
-			}
-			file = new File("basedir\\Texts\\Horror\\First");
-			if (!file.exists()) {
-				if (file.mkdirs())
-					System.out.println("Создана директория Horrow и First");
-			}
-			File f = new File("basedir\\Picture\\1.txt");
-			if (f.createNewFile())
-				System.out.println("Файл 1 успешно создан");
-			f = new File("basedir\\Picture\\2.txt");
-			if (f.createNewFile())
-				System.out.println("Файл 2 успешно создан");
-			f = new File("basedir\\Picture\\3.txt");
-			if (f.createNewFile())
-				System.out.println("Файл 3 успешно создан");
-			f = new File("basedir\\Picture\\4.txt");
-			if (f.createNewFile())
-				System.out.println("Файл 4 успешно создан");
-			f = new File("basedir\\Picture\\5.txt");
-			if (f.createNewFile())
-				System.out.println("Файл 5 успешно создан");
-			f = new File("basedir\\Picture\\6.txt");
-			if (f.createNewFile())
-				System.out.println("Файл 6 успешно создан");
-			if (new File("basedir\\Picture\\5.txt").renameTo(new File("basedir\\\\Picture\\\\5000.txt")))
-				System.out.println("Файл 5 переименован");
-			File ef = new File("basedir\\Picture\\6.txt");
-			if (ef.delete())
-				System.out.println("Файл 6 успешно удален");
-			System.out.println("Какой файл вы хотите удалить ");
-			int n = inp.nextInt();
-			ef = new File("basedir\\Picturre\\n.txt");
-			ef = new File("basedir\\Texts\\Horror");
-			if (ef.delete())
-				System.out.println("Директория Horror успешно удалена");
-			ef = new File("basedir\\Picture");
-			if (ef.delete())
-				System.out.println("Директория Picture успешно удалена");
-		} catch (Exception e) {
-			System.out.println("Error");
-		}
-	}
+
+
+    public static void main(String[] args) {
+
+        try {
+
+            File file = new File("basedir\\Picture");
+
+            if (!file.exists()) {
+
+                if (file.mkdir())
+
+                    System.out.println("Создана директория Picture");
+
+            }
+
+
+
+            file = new File("basedir\\Texts\\History");
+
+            if (!file.exists()) {
+
+                if (file.mkdirs())
+
+                    System.out.println("Создана директория Texts и History");
+
+            }
+
+            file = new File("basedir\\Texts\\Horror\\First");
+
+            if (!file.exists()) {
+
+                if (file.mkdirs())
+
+                    System.out.println("Создана директория Horror и First");
+
+            }
+
+            File f = new File("basedir\\Picture\\1.txt");
+
+            if (f.createNewFile())
+
+                System.out.println("Файл 1 успешно создан");
+
+            f = new File("basedir\\Picture\\2.txt");
+
+            if (f.createNewFile())
+
+                System.out.println("Файл 2 успешно создан");
+
+            f = new File("basedir\\Picture\\3.txt");
+
+            if (f.createNewFile())
+
+                System.out.println("Файл 3 успешно создан");
+
+            f = new File("basedir\\Picture\\4.txt");
+
+            if (f.createNewFile())
+
+                System.out.println("Файл 4 успешно создан");
+
+            f = new File("basedir\\Picture\\5.txt");
+
+            if (f.createNewFile())
+
+                System.out.println("Файл 5 успешно создан");
+
+            f = new File("basedir\\Picture\\6.txt");
+
+            if (f.createNewFile())
+
+                System.out.println("Файл 6 успешно создан");
+
+            if (new File("basedir\\Picture\\5.txt").renameTo(new File("basedir\\\\Picture\\\\5000.txt")))
+
+                System.out.println("Файл 5 переименован");
+
+            File ef = new File("basedir\\Picture\\6.txt");
+
+            if (ef.delete())
+
+                System.out.println("Файл 6 успешно удален");
+
+            System.out.println("Какой файл вы хотите удалить 1 или 2 ");
+
+            int n = inp.nextInt();
+
+            if ( n == 1 ){
+                ef = new File("basedir\\Picture\\1.txt");
+                if (ef.delete())
+                    System.out.println("Файл 1 успешно удален");
+            }
+            if ( n == 2 ){
+                ef = new File("basedir\\Picture\\2.txt");
+                if (ef.delete())
+                    System.out.println("Файл 2 успешно удален");
+            }
+            ef = new File("basedir\\Picture\\2.txt");
+            if ( ef.exists() ) {
+                ef = new File("basedir\\Picture\\2.txt");
+                if (ef.delete())
+                    System.out.println("Файл 2 успешно удален");
+            }
+            else {
+                ef = new File("basedir\\Picture\\1.txt");
+                if (ef.delete())
+                    System.out.println("Файл 1 успешно удален");
+            }
+
+            ef = new File("basedir\\Picture\\3.txt");
+            if (ef.delete())
+                System.out.println("Файл 3 успешно удален");
+
+            ef = new File("basedir\\Picture\\4.txt");
+            if (ef.delete())
+                System.out.println("Файл 4 успешно удален");
+
+            ef = new File("basedir\\Picture\\5000.txt");
+            if (ef.delete())
+                System.out.println("Файл 5000 успешно удален");
+
+            ef = new File("basedir\\Texts\\Horror\\First");
+            if (ef.delete())
+                System.out.println("Дирректория First успешно удален");
+
+            ef = new File("basedir\\Texts\\Horror");
+
+            if (ef.delete())
+
+                System.out.println("Директория Horror успешно удалена");
+
+            ef = new File("basedir\\Picture");
+
+            if (ef.delete())
+
+                System.out.println("Директория Picture успешно удалена");
+
+        } catch (Exception e) {
+
+            System.out.println("Error");
+
+        }
+
+    }
+
 }
+
+
