@@ -1,0 +1,22 @@
+package Laba3;
+
+import java.io.*;
+
+
+public class Number1 {
+    public static void main(String[] args) {
+        try (FileReader fout = new FileReader("Output_1.txt");
+             FileWriter fin = new FileWriter("Output_1.txt")){
+            String str = "топор \nабракадабра \nнажалкабаннабаклажан \nротор \nоборонаспособность \nкотутащатуток \nзабулдыжничество" +
+                    " \nтеатргидропиранилциклопентилтетрагидропиридопиридиновые \nводоворотоподобно \nмамай \nлёшанаполкеклопанашел";
+                fin.write(str);
+                File f = new File("Output_1.txt");
+            System.out.println("Размер данных файле : " + f.getUsableSpace() / 1024);
+
+
+
+        } catch (Exception e){
+            System.out.println("Error");
+        }
+    }
+}
