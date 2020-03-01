@@ -4,154 +4,155 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class For2 {
-	static Random rnd = new Random();
-	static Scanner inp = new Scanner(System.in);
-	private String txt;
+    static Random rnd = new Random();
+    static Scanner inp = new Scanner(System.in);
+    private String txt;
 
-	public For2() {
-	}
+    public For2() {
+    }
 
-	public For2(String txt) {
-		this.txt = txt;
-	}
+    public For2(String txt) {
+        this.txt = txt;
+    }
 
-	public String getTxt() {
-		return txt;
-	}
+    public String getTxt() {
+        return txt;
+    }
 
-	public void setTxt(String txt) {
-		this.txt = txt;
-	}
+    public void setTxt(String txt) {
+        this.txt = txt;
+    }
 
-	public void write() {
-		System.out.println("Введите текст ");
-		setTxt(inp.nextLine());
-	}
+    public void write() {
+        System.out.println("Введите текст ");
+        setTxt(inp.nextLine());
+    }
 
-	public void read() {
-		System.out.println(getTxt());
-	}
+    public void read() {
+        System.out.println(getTxt());
+    }
 
-	public boolean compare(String str) {
-		return str.equalsIgnoreCase(getTxt());
-	}
+    public boolean compare(String str) {
+        return str.equalsIgnoreCase(getTxt());
+    }
 
-	public static String gnra(int length) {
-		char[] txt = new char[length];
-		for (int i = 0; i < txt.length; i++) {
-			int n = (int) (Math.random() * 1114112);
-			txt[i] = (char) n;
-		}
-		return new String(txt);
-	}
+    public static String gnra(int length) {
+        char[] txt = new char[length];
+        for (int i = 0; i < txt.length; i++) {
+            int n = (int) (Math.random() * 1114112);
+            txt[i] = (char) n;
+        }
+        return new String(txt);
+    }
 
-	public static String gnrb(int length) {
-		char[] txt = new char[length];
-		txt[0] = (char) (int) (Math.random() * 1114112);
-		for (int i = 1; i < txt.length; i++) {
-			int n = (int) (Math.random() * 1114112);
-			txt[i] = (char) n;
-			if (txt[i] == txt[i - 1])
-				i--;
-		}
-		return new String(txt);
-	}
+    public static String gnrb(int length) {
+        char[] txt = new char[length];
+        txt[0] = (char) (int) (Math.random() * 1114112);
+        for (int i = 1; i < txt.length; i++) {
+            int n = (int) (Math.random() * 1114112);
+            txt[i] = (char) n;
+            if (txt[i] == txt[i - 1])
+                i--;
+        }
+        return new String(txt);
+    }
 
-	public static String gnrv(int length, int k1, int k2) {
-		char[] txt = new char[length];
-		for (int i = 0; i < txt.length; i++) {
-			int n = (int) (k1 + Math.random() * (k2 - k1));
-			txt[i] = (char) n;
-		}
-		return new String(txt);
-	}
+    public static String gnrv(int length, int k1, int k2) {
+        char[] txt = new char[length];
+        for (int i = 0; i < txt.length; i++) {
+            int n = (int) (k1 + Math.random() * (k2 - k1));
+            txt[i] = (char) n;
+        }
+        return new String(txt);
+    }
 
-	public static String gnrc(int length, String characters, Random rnd) {
-		char[] txt = new char[length];
-		for (int i = 0; i < txt.length; i++) {
-			txt[i] = characters.charAt(rnd.nextInt(characters.length()));
-		}
-		return new String(txt);
-	}
+    public static String gnrc(int length, String characters, Random rnd) {
+        char[] txt = new char[length];
+        for (int i = 0; i < txt.length; i++) {
+            txt[i] = characters.charAt(rnd.nextInt(characters.length()));
+        }
+        return new String(txt);
+    }
 
-	public double chance(String str, char symbol) {
-		double ch = 0;
-		for (int i = 0; i < str.length(); i++) {
-			if (symbol == str.charAt(i))
-				ch++;
-		}
-		return ch / str.length();
-	}
+    public double chance(char symbol) {
+        double ch = 0;
+        for (int i = 0; i < txt.length(); i++) {
+            if (symbol == txt.charAt(i))
+                ch++;
+        }
+        return ch / txt.length();
+    }
 
-	public double hartley(String str) {
-		return str.length() * (Math.log10(str.length()) / Math.log10(2));
-	}
+    public double hartley() {
+        return txt.length() * (Math.log10(txt.length()) / Math.log10(2));
+    }
 
-	public double shennon(String str) {
-		return Math.log10(str.length()) / Math.log10(2);
-	}
+    public double shennon(String str) {
+        return Math.log10(str.length()) / Math.log10(2);
+    }
 
-	public Boolean isPalindrome(String str) {
-		for (int i = 0; i < str.length() / 2; ++i) {
-			if (str.charAt(i) != str.charAt(str.length() - i - 1)) {
-				return false;
-			}
-		}
-		return true;
-	}
+    public Boolean isPalindrome() {
+        for (int i = 0; i < txt.length() / 2; ++i) {
+            if (txt.charAt(i) != txt.charAt(txt.length() - i - 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
-	public Boolean isPalindromeRecursion(String str, int n1, int n2) {
-		if (str.charAt(n1) != str.charAt(n2))
-			return false;
-		else
-			isPalindromeRecursion(str, n1++, n2--);
-		if (n1 >= n2)
-			return true;
-		return true;
-	}
+    public Boolean isPalindromeRecursion(int n1, int n2) {
+        if (n1 >= n2)
+            return true;
+        if (txt.charAt(n1) != txt.charAt(n2))
+            return false;
+        else
+            isPalindromeRecursion(n1++, n2--);
+        return true;
+    }
 
-	public String createPalindrom(String str) {
-		StringBuffer str1 = new StringBuffer(str);
-		str1.reverse();
-		return str + str1;
-	}
+    public String createPalindrom() {
+        StringBuffer str1 = new StringBuffer(txt);
+        str1.reverse();
+        return txt + str1;
+    }
 
-	public String deletewords(String str, String chars) {
-		for (int i = 0; i < chars.length(); i++) {
-			for (int j = 0; j < str.length(); j++) {
-				if (chars.charAt(i) == str.charAt(j))
-					str = str.replace(Character.toString(str.charAt(j)), "");
-			}
-		}
-		return str;
-	}
+    public String deletewords(String chars) {
+        for (int i = 0; i < chars.length(); i++) {
+            for (int j = 0; j < txt.length(); j++) {
+                if (chars.charAt(i) == txt.charAt(j))
+                    txt = txt.replace(Character.toString(txt.charAt(j)), "");
+            }
+        }
+        return txt;
+    }
 
-	public String shift(String str, String side, int n) {
-		if (side.equalsIgnoreCase("left")) {
-			int nn = 0;
-			while ( nn < n ) {
-				char word = str.charAt(0);
-				for (int i = 1; i < str.length(); i++) {
-					str.replace(str.charAt(i - 1), str.charAt(i));
-					if ( i == str.length() - 1 )
-						str.replace(str.charAt(i), word);
-				}
-				nn++;
-			}
-		}
-		if (side.equalsIgnoreCase("right")) {
-			int nn = 0;			
-			while ( nn < n ) {
-				char word = str.charAt(str.length() - 1);
-				for (int i = str.length() - 2; i > 0; i--) {
-					str.replace(str.charAt(i + 1), str.charAt(i));
-					if ( i == 0 )
-						str.replace(str.charAt(i), word);
-				}
-				nn++;
-			}
-		}
-		
-		return str;
-	}
+    public String shift(String side, int n) {
+        if (side.equalsIgnoreCase("left")) {
+            int nn = 0;
+            while ( nn < n ) {
+                char word = txt.charAt(0);
+                for (int i = 1; i < txt.length(); i++) {
+                    txt.replace(txt.charAt(i - 1), txt.charAt(i));
+                    if ( i == txt.length() - 1 )
+                        txt.replace(txt.charAt(i), word);
+                }
+                nn++;
+            }
+        }
+        if (side.equalsIgnoreCase("right")) {
+            int nn = 0;
+            while ( nn < n ) {
+                char word = txt.charAt(txt.length() - 1);
+                for (int i = txt.length() - 2; i > 0; i--) {
+                    txt.replace(txt.charAt(i + 1), txt.charAt(i));
+                    if ( i == 0 )
+                        txt.replace(txt.charAt(i), word);
+                }
+                nn++;
+            }
+        }
+
+        return txt;
+    }
 }
+
