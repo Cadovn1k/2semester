@@ -1,0 +1,46 @@
+package Laba3;
+import java.io.*;
+import java.util.InputMismatchException;
+
+public class Number2 {
+    public static void main(String[] args) throws Exception {
+        int kolvo = 7;
+        Kids mas[] = new Kids[kolvo];
+        for (int i = 0; i < mas.length; i++) {
+            mas[i] = new Kids();
+            mas[i].read();
+        }
+        try (ObjectOutputStream oy = new ObjectOutputStream((new FileOutputStream(("Kids_1.txt"))));
+             ObjectOutputStream oym = new ObjectOutputStream((new FileOutputStream(("Standarts_Male.txt"))));
+             ObjectOutputStream oyg = new ObjectOutputStream((new FileOutputStream(("Standarts_Female.txt"))))) {
+            oy.writeObject(mas);
+            Standarts[] stb = { new Standarts('м', 1, 74, 76, 10.1, 10.7 ),
+                    new Standarts('м', 2, 84, 86, 12.3, 12.7 ),
+                    new Standarts('м', 3, 95, 96, 14.0, 14.5 ),
+                    new Standarts('м', 4, 100, 102, 15.5, 16.0),
+                    new Standarts('м', 5, 106, 108, 17.5, 18.0 ),
+                    new Standarts('м', 6, 112, 115, 20.0, 21.5 ),
+                    new Standarts('м', 7, 122, 124, 23.0, 25.0 ),};
+            Standarts[] stg = { new Standarts('ж', 1, 73, 75, 10.0, 10.5 ),
+                    new Standarts('ж', 2, 83, 85, 12.3, 12.5 ),
+                    new Standarts('ж', 3, 95, 96, 14.1, 14.5 ),
+                    new Standarts('ж', 4, 99, 101, 15.3, 15.7),
+                    new Standarts('ж', 5, 105, 106, 17.4, 17.9 ),
+                    new Standarts('ж', 6, 113, 116, 20.0, 21.1 ),
+                    new Standarts('ж', 7, 123, 125, 23.0, 25.2 ),};
+            oym.writeObject(stb);
+            oyg.writeObject(stg);
+        } catch (InputMismatchException e){
+            System.out.println("ОШИБОЧКА");
+        } catch (Exception e){
+            System.out.println("ERROR");
+        }
+
+
+        String o = "Возраст, лет";
+        String minh = "Min рост";
+        String maxh = "Max рост";
+        String minw = "Min вес";
+        String maxw = "Max вес";
+    }
+}
