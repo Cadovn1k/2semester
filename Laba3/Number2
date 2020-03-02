@@ -1,3 +1,4 @@
+//не рабочий
 package Laba3;
 import java.io.*;
 import java.util.InputMismatchException;
