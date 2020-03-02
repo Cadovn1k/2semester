@@ -1,0 +1,74 @@
+package Laba3;
+import java.io.Serializable;
+import java.util.Scanner;
+public class Standarts implements Serializable {
+
+    static Scanner inp = new Scanner(System.in);
+    private char sex;
+    private int age;
+    private double minheight;
+    private double maxheight;
+    private double minweight;
+    private double maxweight;
+
+    public Standarts() {
+    }
+
+    public Standarts(char sex, int age, double minheight, double maxheight, double minweight, double maxweight) {
+        this.age = age;
+        this.minheight = minheight;
+        this.maxheight = maxheight;
+        this.minweight = minweight;
+        this.maxweight = maxweight;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public double getMinheight() {
+        return minheight;
+    }
+
+    public void setMinheight(double minheight) {
+        this.minheight = minheight;
+    }
+
+    public double getMaxheight() {
+        return maxheight;
+    }
+
+    public void setMaxheight(double maxheight) {
+        this.maxheight = maxheight;
+    }
+
+    public double getMinweight() {
+        return minweight;
+    }
+
+    public void setMinweight(double minweight) {
+        this.minweight = minweight;
+    }
+
+    public double getMaxweight() {
+        return maxweight;
+    }
+
+    public void setMaxweight(double maxweight) {
+        this.maxweight = maxweight;
+    }
+
+    @Override
+    public String toString() {
+        return "Нормативы" +
+                " возраст =" + age +
+                ", min рост = " + minheight +
+                ", max рост = " + maxheight +
+                ", min вес = " + minweight +
+                ", max вес = " + maxweight;
+    }
+}
