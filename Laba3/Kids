@@ -1,0 +1,127 @@
+package Laba3;
+
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Scanner;
+
+public class Kids implements Serializable {
+    static Scanner inp = new Scanner(System.in);
+
+    public Kids() {
+    }
+
+    public Kids(String surname, String name, LocalDate birth, char sex, double height, double weight) {
+        this.surname = surname;
+        this.name = name;
+        this.birth = birth;
+        this.sex = sex;
+        this.height = height;
+        this.weight = weight;
+    }
+
+    private String surname;
+
+    private String name;
+
+    private LocalDate birth;
+
+    private Character sex;
+
+    private Double height;
+
+    private Double weight;
+
+    public Double getHeight() {
+        return height;
+    }
+
+    public void setHeight(Double height) {
+        this.height = height;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
+    }
+
+    public Character getSex() {
+        return sex;
+    }
+
+    public void setSex(Character sex) {
+        this.sex = sex;
+    }
+
+    public LocalDate getBirth() {
+        return birth;
+    }
+
+    public void setBirth(LocalDate birth) {
+        this.birth = birth;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void read() {
+        System.out.println("Введите фамилию : ");
+        this.surname = inp.next();
+        System.out.println("Введите имя :");
+        this.name = inp.next();
+        System.out.println("Введите год, месяц и день рождения : ");
+        this.birth = LocalDate.of(inp.nextInt(), inp.nextInt(), inp.nextInt());
+        System.out.println("Введите пол : ");
+        String s = inp.next();
+        this.sex = s.charAt(0);
+        System.out.println("Введите рост : ");
+        this.height = inp.nextDouble();
+        System.out.println("Введите вес : ");
+        this.weight = inp.nextDouble();
+    }
+
+    public int old() {
+        int years = 0;
+        LocalDate today = LocalDate.now();
+        int yeartoday = today.getYear();
+        int monthtoday = today.getMonthValue();
+        int daytoday = today.getDayOfMonth();
+        int yearold = birth.getYear();
+        int monthold = birth.getMonthValue();
+        int dayold = birth.getDayOfMonth();
+        if (monthtoday > monthold) {
+            years = yeartoday - yearold;
+        }
+        if (monthtoday < monthold) {
+            years = yeartoday - yearold - 1;
+        }
+        if (monthtoday == monthold) {
+            if (daytoday >= dayold)
+                years = yeartoday - yearold;
+            else
+                years = yeartoday - yearold - 1;
+        }
+        return years;
+    }
+
+    @Override
+    public String toString() {
+        return "Пользователь : " + "фамилия : " + surname + ", " + "имя : " + name + ", " + "дата рождения : " + birth
+                + ", " + "пол : " + sex;
+    }
+}
