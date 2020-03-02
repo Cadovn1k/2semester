@@ -1,0 +1,70 @@
+package Laba3;
+
+import java.util.Scanner;
+
+public class For1 {
+    static Scanner inp = new Scanner(System.in);
+    private String txt;
+
+    public For1() {
+    }
+
+    public For1(String txt) {
+        this.txt = txt;
+    }
+
+    public String getTxt() {
+        return txt;
+    }
+
+    public void setTxt(String txt) {
+        this.txt = txt;
+    }
+
+    public void write() {
+        System.out.println("Введите текст ");
+        setTxt(inp.nextLine());
+    }
+
+    public void read() {
+        System.out.println(getTxt());
+    }
+
+    public boolean compare() {
+        return txt.equalsIgnoreCase(getTxt());
+    }
+
+    public double hartley() {
+        return txt.length() * (Math.log10(txt.length()) / Math.log10(2));
+    }
+
+    public double shennon() {
+        return Math.log10(txt.length()) / Math.log10(2);
+    }
+
+    public Boolean isPalindrome() {
+        for (int i = 0; i < txt.length() / 2; ++i) {
+            if (txt.charAt(i) != txt.charAt(txt.length() - i - 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public Boolean isPalindromeRecursion(int n1, int n2) {
+        if (n1 >= n2)
+            return true;
+        if (txt.charAt(n1) != txt.charAt(n2))
+            return false;
+        else
+            isPalindromeRecursion(n1++, n2--);
+        return true;
+    }
+
+    public String createPalindrom() {
+        StringBuffer str1 = new StringBuffer(txt);
+        str1.reverse();
+        return txt + str1;
+    }
+
+}
