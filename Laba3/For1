@@ -1,468 +1,59 @@
 package Laba3;
 
-
-
 import java.util.Scanner;
 
-import java.io.File;
-
-import java.io.*;
-
-
-
-public class Number1 {
-
-    public static void main(String[] args) throws Exception {
-
-        File f = new File("Output_1.txt");
-
-        try  {
-            FileWriter fin = new FileWriter(f);
-
-            String str = "топор \nабракадабра \nнажалкабаннабаклажан \nротор \nоборонаспособность \nкотутащатуток \nзабулдыжничество"
-
-                    + " \nтеатргидропиранилциклопентилтетрагидропиридопиридиновые \nводоворотоподобно \nмамай \nлёшанаполкеклопанашел";
-
-            fin.write(str);
-
-            fin.close();
-
-            FileReader fout = new FileReader(f);
-
-            Scanner inp = new Scanner(fout);
-
-            System.out.printf("Размер данных файле : %d байт ", f.length());
-
-            System.out.println();
-
-            int nall = 130;
-
-            String minus = "-";
-
-            for (int i = 0; i < nall; i++) {
-
-                System.out.print(minus);
-
-            }
-
-            System.out.println();
-
-            int n1 = 4;
-
-            String number = "№";
-
-            System.out.print(number);
-
-            for (int i = 0; i < n1 - number.length(); i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.print("|");
-
-            int n2 = 57;
-
-            String word = "Слово";
-
-            System.out.print(word);
-
-            for (int i = 0; i < n2 - word.length(); i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.print("|");
-
-            int n3 = 11;
-
-            for (int i = 0; i < n3; i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.print("|");
-
-            int n11 = 53;
-
-            String kolvoinf = "Количество информации";
-
-            for (int i = 0; i < n11 - kolvoinf.length(); i++) {
-
-                if (i == 16)
-
-                    System.out.print(kolvoinf);
-
-                System.out.print(" ");
-
-            }
-
-            System.out.println();
-
-            for (int i = 0; i < nall; i++) {
-
-                System.out.print(minus);
-
-            }
-
-            System.out.println();
-
-            for (int i = 0; i < n1; i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.print("|");
-
-            for (int i = 0; i < n2; i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.print("|");
-
-            for (int i = 0; i < n3; i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.print("|");
-
-            int n43 = 14;
-
-            String kolvo = "Кол-во";
-
-            System.out.print(kolvo);
-
-            for (int i = 0; i < n3 - kolvo.length(); i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.print("|");
-
-            String br = "Байт, размер";
-
-            System.out.print(br);
-
-            for (int i = 0; i < n43 - br.length(); i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.print("|");
-
-            String bitz = "Бит,";
-
-            System.out.print(bitz);
-
-            for (int i = 0; i < n43 - bitz.length(); i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.print("|");
-
-            System.out.print(bitz);
-
-            for (int i = 0; i < n43 - bitz.length(); i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.println();
-
-            for (int i = 0; i < n1; i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.print("|");
-
-            for (int i = 0; i < n2; i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.print("|");
-
-            for (int i = 0; i < n3; i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.print("|");
-
-            String simv = " символов";
-
-            System.out.print(simv);
-
-            for (int i = 0; i < n3 - simv.length(); i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.print("|");
-
-            String vpr = "в программе";
-
-            System.out.print(vpr);
-
-            for (int i = 0; i < n43 - vpr.length(); i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.print("|");
-
-            String ph = "по Хартли";
-
-            System.out.print(ph);
-
-            for (int i = 0; i < n43 - ph.length(); i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.print("|");
-
-            String psh = "по Шеннону";
-
-            System.out.print(psh);
-
-            for (int i = 0; i < n43 - psh.length(); i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.println();
-
-            for (int i = 0; i < nall; i++) {
-
-                System.out.print(minus);
-
-            }
-
-            int numbers = 1;
-
-            int palindromes = 0;
-
-            int howmanywords = 0;
-
-            int howmanybytes = 0;
-
-            double hartleybits = 0;
-
-            double shennonbits = 0;
-
-            while ( inp.hasNext() ){
-
-                word = inp.next();
-
-                For1 words = new For1(word);
-
-                System.out.print("\n" + numbers);
-
-                for (int i = 0; i < n1 - number.length(); i++) {
-
-                    System.out.print(" ");
-
-                }
-
-                System.out.print("|");
-
-                System.out.print(word);
-
-                for (int i = 0; i < n2 - word.length(); i++) {
-
-                    System.out.print(" ");
-
-                }
-
-                System.out.print("|");
-
-                if ( words.isPalindrome() ) {
-
-                    System.out.print("+");
-
-                    palindromes++;
-
-                }
-
-                else System.out.print("-");
-
-                for (int i = 0; i < n3 - 1; i++) {
-
-                    System.out.print(" ");
-
-                }
-
-                System.out.print("|");
-
-                String kolv = String.valueOf(words.getTxt().length());
-
-                howmanywords += words.getTxt().length();
-
-                System.out.print(kolv);
-
-                for (int i = 0; i < n3 - kolv.length(); i++) {
-
-                    System.out.print(" ");
-
-                }
-
-                System.out.print("|");
-
-                int b = words.getTxt().getBytes().length;
-
-                howmanybytes += b;
-
-                for (int i = 0; i < n43 - String.valueOf(b).length(); i++) {
-
-                    System.out.print(" ");
-
-                }
-
-                System.out.print(b);
-
-                System.out.print("|");
-
-                double h = words.hartley();
-
-                hartleybits += h;
-
-                int hi = (int) h;
-
-                for (int i = 0; i < n43 - String.valueOf(hi).length() - 3; i++) {
-
-                    System.out.print(" ");
-
-                }
-
-                System.out.printf("%.2f", h);
-
-                System.out.print("|");
-
-                double sh = words.shennon();
-
-                shennonbits += sh;
-
-                int shi = (int) sh;
-
-                for (int i = 0; i < n43 - String.valueOf(shi).length() - 10; i++) {
-
-                    System.out.print(" ");
-
-                }
-
-                System.out.printf("%.9f", sh);
-
-                numbers++;
-
-            }
-
-            System.out.println();
-            for (int i = 0; i < nall; i++) {
-
-                System.out.print(minus);
-
-            }
-            System.out.println();
-
-            for (int i = 0; i < n1; i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.print("|");
-
-            String itogo = "ИТОГО";
-
-            System.out.print(itogo);
-
-            for (int i = 0; i < n2 - itogo.length(); i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.print("|");
-
-            System.out.print(palindromes);
-
-            for (int i = 0; i < n3 - String.valueOf(palindromes).length(); i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.print("|");
-
-            System.out.print(howmanywords);
-
-            for (int i = 0; i < n3 - String.valueOf(howmanywords).length(); i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.print("|");
-
-            for (int i = 0; i < n43 - String.valueOf(howmanybytes).length(); i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.print(howmanybytes);
-
-            System.out.print("|");
-
-            int hart = (int) hartleybits;
-
-            for (int i = 0; i < n43 - String.valueOf(hart).length() - 3; i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.printf("%.2f", hartleybits);
-
-            System.out.print("|");
-
-            int shen = (int) shennonbits;
-
-            for (int i = 0; i < n43 - String.valueOf(shen).length() - 10; i++) {
-
-                System.out.print(" ");
-
-            }
-
-            System.out.printf("%.9f", shennonbits);
-
-        } catch (Exception e) {
-
-            System.out.println("Error");
-
+public class For1 {
+    static Scanner inp = new Scanner(System.in);
+    private String txt;
+
+    public For1() {
+    }
+
+    public For1(String txt) {
+        this.txt = txt;
+    }
+
+    public String getTxt() {
+        return txt;
+    }
+
+    public void setTxt(String txt) {
+        this.txt = txt;
+    }
+
+    public void write() {
+        System.out.println("Введите текст ");
+        setTxt(inp.nextLine());
+    }
+
+    public double hartley() {
+        return txt.length() * (Math.log10(txt.length()) / Math.log10(2));
+    }
+
+    public double shennon() {
+        double summ = 0;
+        for (int i = 0; i < txt.length(); i++) {
+            summ += chance(txt.charAt(i)) * (Math.log10(chance(txt.charAt(i))) / Math.log10(2));
         }
+        return -summ;
+    }
 
+    public Boolean isPalindrome() {
+        for (int i = 0; i < txt.length() / 2; ++i) {
+            if (txt.charAt(i) != txt.charAt(txt.length() - i - 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public double chance(char symbol) {
+        double ch = 0;
+        for (int i = 0; i < txt.length(); i++) {
+            if (symbol == txt.charAt(i))
+                ch++;
+        }
+        return ch / txt.length();
     }
 
 }
