@@ -1,1 +1,17 @@
+package Laba4;
 
+import java.util.Scanner;
+public class Number1 {
+    public static void main(String[] args) {
+        For1 a1 = new For1(new Integer[]{1,2,3,4,5,6,7,8,9,10});
+        For1 a2 = new For1(new Double[]{1.1,2.2,3.3,4.4,5.5,6.6,7.7,8.8,9.9,10.11});
+        For1 a3 = new For1(new String[]{"Саша", "Вася", "Коля", "Маша", "Даша", "Дима","Ваня", "Толя","Вова","Вадим"});
+        a1.swap(1,5);
+        System.out.println(a1.toString());
+        a2.swap(2,8);
+        System.out.println(a2.toString());
+        a3.swap(3,9);
+        System.out.println(a3.toString());
+
+    }
+}
