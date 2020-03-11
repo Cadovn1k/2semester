@@ -47,19 +47,11 @@ public class Number1 {
 
             System.out.printf("%-4s", "№");
 
-            System.out.print("|");
+            System.out.printf("%-58s", "|Слово");
 
+            System.out.printf("%-12s", "|");
 
-
-            System.out.printf("%-57s", "Слово");
-
-            System.out.print("|");
-
-            System.out.printf("%11s", "");
-
-            System.out.print("|");
-
-            System.out.printf("%-53s", "Количество информации");
+            System.out.printf("%-54s", "|Количество информации");
 
             System.out.println();
 
@@ -71,57 +63,33 @@ public class Number1 {
 
             System.out.println();
 
-            System.out.printf("%4s", "");
+            System.out.printf("%5s", "|");
 
-            System.out.print("|");
+            System.out.printf("%58s", "|");
 
-            System.out.printf("%57s", "");
-
-            System.out.print("|");
-
-            System.out.printf("%11s", "");
-
-            System.out.print("|");
+            System.out.printf("%12s", "|");
 
             System.out.printf("%-11s", "Кол-во");
 
-            System.out.print("|");
+            System.out.printf("%-15s", "|Байт, размер");
 
-            System.out.printf("%-14s", "Байт, размер");
+            System.out.printf("%-15s", "|Бит,");
 
-            System.out.print("|");
-
-            System.out.printf("%-14s", "Бит,");
-
-            System.out.print("|");
-
-            System.out.printf("%-14s", "Бит,");
+            System.out.printf("%-15s", "|Бит,");
 
             System.out.println();
 
-            System.out.printf("%4s", "");
+            System.out.printf("%5s", "|");
 
-            System.out.print("|");
+            System.out.printf("%58s", "|");
 
-            System.out.printf("%57s", "");
+            System.out.printf("%12s", "|");
 
-            System.out.print("|");
+            System.out.printf("%12s", "символов|");
 
-            System.out.printf("%11s", "");
+            System.out.printf("%15s", "в программе|");
 
-            System.out.print("|");
-
-            System.out.printf("%11s", "символов");
-
-            System.out.print("|");
-
-            System.out.printf("%14s", "в программе");
-
-            System.out.print("|");
-
-            System.out.printf("%14s", "по Хартли");
-
-            System.out.print("|");
+            System.out.printf("%15s", "по Хартли|");
 
             System.out.printf("%14s", "по Шеннону");
 
@@ -154,31 +122,24 @@ public class Number1 {
 
                 System.out.printf("\n%-4s", nn);
 
-                System.out.print("|");
-
-                System.out.printf("%-57s", word);
-
-                System.out.print("|");
+                System.out.printf("|%-57s", word);
 
                 if ( words.isPalindrome() ) {
-                    System.out.printf("%-11s", "+");
+                    System.out.printf("|%-11s", "+");
 
                     palindromes++;
 
                 }
 
                 else {
-                    System.out.printf("%-11s", "-");
+                    System.out.printf("|%-11s", "-");
                 }
-
-                System.out.print("|");
 
                 String kolv = String.valueOf(words.getTxt().length());
 
                 howmanywords += words.getTxt().length();
 
-                System.out.printf("%-11s", kolv);
-
+                System.out.printf("|%-11s", kolv);
 
                 System.out.print("|");
 
@@ -186,18 +147,14 @@ public class Number1 {
 
                 howmanybytes += b;
 
-                System.out.printf("%14s",String.valueOf(b));
-
-                System.out.print("|");
+                System.out.printf("%14s|",String.valueOf(b));
 
                 double h = words.hartley();
 
                 hartleybits += h;
 
 
-                System.out.printf("%14.2f", h);
-
-                System.out.print("|");
+                System.out.printf("%14.2f|", h);
 
                 double sh = words.shennon();
 
@@ -223,27 +180,17 @@ public class Number1 {
 
             }
 
-            System.out.print("|");
+            System.out.printf("%-58s", "|ИТОГО");
 
-            System.out.printf("%-57s", "ИТОГО");
+            System.out.printf("|%-11s", String.valueOf(palindromes));
 
-            System.out.print("|");
-
-            System.out.printf("%-11s", String.valueOf(palindromes));
+            System.out.printf("|%-11s", String.valueOf(howmanywords));
 
             System.out.print("|");
 
-            System.out.printf("%-11s", String.valueOf(howmanywords));
+            System.out.printf("%14s|", String.valueOf(howmanybytes));
 
-            System.out.print("|");
-
-            System.out.printf("%14s", String.valueOf(howmanybytes));
-
-            System.out.print("|");
-
-            System.out.printf("%14.2f", hartleybits);
-
-            System.out.print("|");
+            System.out.printf("%14.2f|", hartleybits);
 
             int shen = (int) shennonbits;
 
