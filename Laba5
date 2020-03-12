@@ -1,0 +1,32 @@
+package Laba4.Laba5;
+
+public class Number1 {
+    public static void main(String[] args) {
+        TabFunc( -2 * Math.PI, 2 * Math.PI, Math.PI / 6, (x) -> Math.cos(x) );
+        System.out.println();
+        TabFunc(-2 * Math.PI, 2 * Math.PI, Math.PI / 6, (x) -> 2 * Math.sqrt(Math.abs( x - 1 )) + 1);
+        System.out.println();
+        TabFunc(-2 * Math.PI, 2 * Math.PI, Math.PI / 6, (x) -> - Math.pow(x / Math.PI, 2) - 2 * x + 5 * Math.PI);
+        System.out.println();
+        TabFunc(-2 * Math.PI, 2 * Math.PI, Math.PI / 6, (x) -> {
+            double y = 0;
+            for (int i = 1; i < 100; i++) {
+                y += Math.pow((x / (Math.PI * i) - 1), 2);
+            }
+            return y;
+        } );
+    }
+
+
+
+    interface Myfunc {
+        double func(double x);
+    }
+    public static void TabFunc(double a, double b, double k, Myfunc f){
+        int d = (int)(( b - a ) / k);
+        for (int i = 0; i <= d; i ++) {
+            System.out.println("x = " + (a + i * k) + ", f(x) = " + f.func( a + i * k));
+        }
+    }
+
+}
