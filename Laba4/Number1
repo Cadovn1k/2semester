@@ -1,10 +1,11 @@
 package Laba4;
 
-import java.util.Scanner;
+import java.util.Arrays;
+
 public class Number1 {
     public static void main(String[] args) {
-        For1 a1 = new For1(new Integer[]{1,2,3,4,5,6,7,8,9,10});
-        For1 a2 = new For1(new Double[]{1.1,2.2,3.3,4.4,5.5,6.6,7.7,8.8,9.9,10.11});
+        For1 a1 = new For1(new Integer[]{1,2,3,4,5,6,10,8,9,7});
+        For1 a2 = new For1(new Double[]{1.1,2.2,3.3,11.4,5.5,6.6,7.7,8.8,9.9,2.7});
         For1 a3 = new For1(new String[]{"Саша", "Вася", "Коля", "Маша", "Даша", "Дима","Ваня", "Толя","Вова","Вадим"});
         a1.swap(1,5);
         System.out.println(a1.toString());
@@ -12,6 +13,20 @@ public class Number1 {
         System.out.println(a2.toString());
         a3.swap(3,9);
         System.out.println(a3.toString());
-
+        a1.delete(3);
+        System.out.println(a1.toString());
+        a2.delete(6);
+        System.out.println(a2.toString());
+        a3.delete(9);
+        System.out.println(a3.toString());
+        a1.outputtowindow();
+//        a2.outputtowindow();
+//        a3.outputtowindow();
+        a2.someelemennts();
+        System.out.println("Элемент с указанным индексом : " + a3.eleement(- 5));
+        Object[] ms1 = a1.evenorodd("четный");
+        System.out.println("Массив из четных элементов : " + Arrays.toString(ms1));
+        Object[] ms2 = a2.evenorodd("нечетный");
+        System.out.println("Массив из нечетных элементов : " + Arrays.toString(ms2));
     }
 }
