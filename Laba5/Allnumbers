@@ -77,7 +77,7 @@ public class Allnumbers {
         Myfunc fbb = (x) -> - (x / Math.PI) * (x / Math.PI) - 2 * x + 5 * Math.PI;
         Myfunc fcc = (x) -> 0.5 * Math.cos(x) * Math.cos(x) + 1;
         System.out.println(Rectanglemethod(-Math.PI, Math.PI, n, faa));
-        System.out.println(Rectanglemethod(-Math.PI, Math.PI, n, fbb));  // здесь ответ почему-то не 96.6, хотя остальные верные
+        System.out.println(Rectanglemethod(-Math.PI, Math.PI, n, fbb));
         System.out.println(Rectanglemethod(-Math.PI, Math.PI, n, fcc));
 
         System.out.println();
