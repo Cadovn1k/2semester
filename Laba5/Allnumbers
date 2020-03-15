@@ -1,0 +1,197 @@
+package Laba5;
+
+import java.util.function.Predicate;
+
+public class Allnumbers {
+    public static void main(String[] args) {
+        double a = -2 * Math.PI;
+        double b = 2 * Math.PI;
+        double k = Math.PI / 6;
+        Myfunc f1 = (x) -> Math.cos(x);
+        Myfunc f2 = (x) -> 2 * Math.sqrt(Math.abs( x - 1 )) + 1;
+        Myfunc f3 = (x) -> - Math.pow(x / Math.PI, 2) - 2 * x + 5 * Math.PI;
+        Myfunc f4 = (x) -> {
+            double y = 0;
+            for (int i = 1; i < 100; i++) {
+                y += Math.pow((x / (Math.PI * i) - 1), 2);
+            }
+            return y;
+        };
+        Myfunc f5 = (x) -> {
+            if ( x < 0 )
+                return (1 / 4) * Math.sin(x) * Math.sin(x) + 1;
+            else return (1 / 2) * Math.cos(x) * Math.cos(x) - 1;
+        };
+
+//        TabFunc( a, b, k, f1 );
+//        System.out.println();
+//        TabFunc(a, b, k, f2);
+//        System.out.println();
+//        TabFunc(a, b, k, f3);
+//        System.out.println();
+//        TabFunc(a, b, k, f4);
+//        System.out.println();
+//        TabFunc(a, b, k, f5);
+
+        Myfunc[] myfuncs = new Myfunc[]{f1,f2,f3,f4,f5};
+        for (Myfunc f : myfuncs) {
+            TabFunc( a, b, k, f );
+            System.out.println();
+        }
+
+        int negative = 0;
+        int inarea = 0;
+        for (Myfunc f : myfuncs) {
+            negative += TabFunc1(a,b,k,f);
+            System.out.println("Количество отрицательных значений функции  для отдельной функции = " + TabFunc1(a,b,k,f));
+            inarea += TabFunc2(a,b,k,f);
+            System.out.println("Количество значений из [-1,1] для отдельной функции = " + TabFunc2(a,b,k,f));
+            System.out.println();
+        }
+        System.out.println("Количество отрицательных значений функции для всех функций = " + negative);
+        System.out.println("Количество значений из [-1,1] для всех функций = " + inarea);
+        System.out.println();
+        int n = 10; // допустим точек будет 10
+        for (Myfunc f : myfuncs) {
+            System.out.println("Минимальное значение функции = " + Minadd(n, f));
+            System.out.println("Максимальное значение функции = " + Maxadd(n, f));
+            System.out.println();
+        }
+
+        System.out.println("Number 2");
+
+        Myfunc fa = (x) -> x * Math.sin(x) - 0.5;
+        Myfunc fbv = (x) -> Math.log10(x * x - 3 * x + 2);
+        Myfunc fg = (x) -> 0.5 * Math.tan(2/3 * ( x + Math.PI / 4 ) - 1);
+        System.out.println(Findx(0, Math.PI, fa));
+        System.out.println(Findx(0, 0.9, fbv));
+        System.out.println(Findx(2.1, 5, fbv));
+        System.out.println(Findx(Math.PI, 2 * Math.PI, fg));
+
+        System.out.println();
+
+        System.out.println("Number 3");
+
+        int nn = 10;
+        Myfunc faa = (x) -> 2 * Math.sin(x) + 1;
+        Myfunc fbb = (x) -> - (x / Math.PI) * (x / Math.PI) - 2 * x + 5 * Math.PI;
+        Myfunc fcc = (x) -> 0.5 * Math.cos(x) * Math.cos(x) + 1;
+        System.out.println(Rectanglemethod(-Math.PI, Math.PI, n, faa));
+        System.out.println(Rectanglemethod(-Math.PI, Math.PI, n, fbb));  // здесь ответ почему-то не 96.6, хотя остальные верные
+        System.out.println(Rectanglemethod(-Math.PI, Math.PI, n, fcc));
+
+        System.out.println();
+
+        System.out.println("Number 4");
+
+        Predicate<String> fiveword = (s) -> s.length() == 5;
+        Predicate<String> isPalindrom = (s) -> s.equals((new StringBuilder(s)).reverse().toString());
+        Predicate<String> beginwithw = (s) -> s.charAt(0) == 'W';
+        String[] strings = new String[]{"а роза упала на лапу азора","Wold",
+                "Hello", "pop","level"};
+        int fivew = 0;
+        int ispal = 0;
+        String wwords = "";
+        for (String s : strings) {
+            if( fiveword.test(s) )
+                fivew++;
+            if ( isPalindrom.test(s) )
+                ispal++;
+            if ( beginwithw.test(s) )
+                wwords += s + " ";
+        }
+        System.out.println("Количество пятибуквенных слов в наборе из 5-ти строк = " + fivew);
+        System.out.println("Количество палиндромов в наборе из 5-ти строк = " + ispal);
+        System.out.println("Слова на 'W' в наборе из 5-ти строк : " + wwords);
+    }
+
+
+    interface Myfunc {
+        double func(double x);
+    }
+
+    public static void TabFunc(double a, double b, double k, Myfunc f){
+        int d = (int)(( b - a ) / k);
+        for (int i = 0; i <= d; i ++) {
+            System.out.println("x = " + (a + i * k) + ", f(x) = " + f.func( a + i * k));
+        }
+    }
+
+    public static int TabFunc1(double a, double b, double k, Myfunc f){
+        int negative = 0;
+        int d = (int)(( b - a ) / k);
+        double[] dd = new double[d];
+        Predicate<Double> predicate = (pr) -> pr < 0;
+        for (int i = 0; i <= d; i ++) {
+//            if ( f.func( a + i * k) < 0 )
+//                negative++;
+            if ( predicate.test(f.func( a + i * k)) )
+                negative++;
+        }
+        return negative;
+    }
+
+    public static int TabFunc2(double a, double b, double k, Myfunc f){
+        int inarea = 0;
+        int d = (int)(( b - a ) / k);
+        double[] dd = new double[d];
+        Predicate<Double> predicate = (pr) -> pr >= -1 && pr <= 1;
+        for (int i = 0; i <= d; i ++) {
+//            if ( f.func( a + i * k) >= -1 && f.func( a + i * k) <= 1  )
+//                inarea++;
+            if ( predicate.test(f.func( a + i * k)) )
+                inarea++;
+        }
+        return inarea;
+    }
+
+    public static double Minadd(int n, Myfunc f){
+        double[] points = new double[n];
+        for (int i = 0; i < points.length; i++) {
+            points[i] = Math.random() * 20 - 10;
+        }
+        double min = f.func(points[0]);
+        for (int i = 1; i < points.length; i++) {
+            if ( min > f.func(points[i]) )
+                min = f.func(points[i]);
+        }
+        return min;
+    }
+
+    public static double Maxadd(int n, Myfunc f){
+        double[] points = new double[n];
+        for (int i = 0; i < points.length; i++) {
+            points[i] = Math.random() * 20 - 10;
+        }
+        double max = f.func(points[0]);
+        for (int i = 1; i < points.length; i++) {
+            if ( max < f.func(points[i]) )
+                max = f.func(points[i]);
+        }
+        return max;
+    }
+
+    public static double Findx(double a,double b, Myfunc f){
+        double x = 0;
+        if ( f.func(a) == 0 )
+            return a;
+        if ( f.func(b) == 0 )
+            return b;
+        while( b - a > 0.0001 ){
+            x = (a + b) / 2;
+            if ( f.func(a) * f.func(x) < 0 )
+                b = x;
+            else a = x;
+        }
+        return x;
+    }
+
+    public static double Rectanglemethod(double a, double b, int n, Myfunc f){
+        double res = 0;
+        double h = (b - a) / n;
+        for (int i = 1; i <= n; i++) {
+            res += f.func(a + i * h);
+        }
+        return res * h;
+    }
+}
