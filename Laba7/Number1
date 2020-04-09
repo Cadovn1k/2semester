@@ -1,0 +1,61 @@
+package Laba7;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Number1 {
+    public Number1() throws FileNotFoundException {
+    }
+
+    public static void main(String[] args) throws FileNotFoundException {
+        try {
+            File file = new File("Text.txt");
+            Scanner inp = new Scanner(file);
+            Array example = new Array();
+            while (inp.hasNextLine()) {
+                example.add(inp.nextLine().length());
+            }
+            System.out.println(example.getmaxindex() + 1);
+            System.out.println(example.get2ndmaxindex() + 1);
+            ArrayList<Integer> newexample = new ArrayList<Integer>();
+            file = new File("Text.txt");
+            Scanner input = new Scanner(file);
+            int length = 0;
+            while (input.hasNextLine()) {
+                newexample.add(input.nextLine().length());
+                length++;
+            }
+            int max = newexample.get(0);
+            int maxindex = 0;
+            for (int i = 1; i < length; i++) {
+                if ( max < newexample.get(i) ) {
+                    max = newexample.get(i);
+                    maxindex = i;
+                }
+            }
+            System.out.println(maxindex + 1);
+            max = newexample.get(0);
+            int secondmaxindex = 0;
+            for (int i = 1; i < length; i++) {
+                if ( max < newexample.get(i) && newexample.get(i) != newexample.get(maxindex) ) {
+                    max = newexample.get(i);
+                    secondmaxindex = i;
+                }
+            }
+            System.out.println(secondmaxindex + 1);
+            System.out.println("Проверка методов");
+            System.out.println(example.get(3));
+            System.out.println("Переполнен ли массив - " + example.fullness());
+            System.out.println("Актуальное колчество элементов = " + example.actualnumberofitems());
+            example.add(40);
+            example.add(6,8);
+            System.out.println("Новый индекс максимума = " + example.getmaxindex() + " и сам максимум - " + example.get(example.getmaxindex()));
+            System.out.println("Актуальное колчество элементов = " + example.actualnumberofitems());
+    }
+    catch (Exception e){
+        System.out.println("Error");
+    }
+    }
+}
