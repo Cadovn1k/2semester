@@ -8,7 +8,7 @@ public class Array {
     public Array(){
         this.array = new int[]{};
     }
-    
+
     public Array(int length){
         this.array = new int[length];
     }
