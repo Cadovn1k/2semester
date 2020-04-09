@@ -5,31 +5,41 @@ import java.util.Arrays;
 public class Number2 {
     public static void main(String[] args) {
         int[] ms = new int[]{5,4,3,2,1};
-        ms = selectionSort(ms);
+        ms = minMaxSelectionSort(ms);
         System.out.println(Arrays.toString(ms));
     }
 
-    public static int[] selectionSort(int[] array) {
-        for (int i = 0; i < array.length - 1; i++) {
-            int index = i;
-            int ind = array.length - 1 - i;
-            if ( index >= ind )
-                break;
-            for (int j = i + 1; j < array.length; j++) {
-                if (array[j] < array[index])
-                    index = j;
+    static int[] minMaxSelectionSort(int[] array) {
+        for (int i = 0, j = array.length - 1; i < j; i++, j--) {
+            int min = array[i];
+            int max = array[i];
+            int minindex = i;
+            int maxindex = i;
+            for (int k = i; k <= j; k++) {
+                if (array[k] > max)
+                {
+                    max = array[k];
+                    maxindex = k;
+                }
+                else if (array[k] < min)
+                {
+                    min = array[k];
+                    minindex = k;
+                }
             }
-            int min = array[index];
-            array[index] = array[i];
-            array[i] = min;
-            for (int j = i + 1; j < array.length; j++) {
-                if ( array[array.length - 1 - j] > array[ind] )
-                    ind = array.length - 1 - j;
-            }
-            int max = array[ind];
-            array[ind] = array[array.length - 1 - i];
-            array[array.length - 1 - i] = max;
+            swap(array, i, minindex);
+            if (array[minindex] == max)
+                swap(array, j, minindex);
+            else
+                swap(array, j, maxindex);
         }
+        return array;
+    }
+
+    static int[] swap(int []array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
         return array;
     }
 }
