@@ -9,7 +9,7 @@ public class Number2 {
         System.out.println(Arrays.toString(ms));
     }
 
-    static int[] minMaxSelectionSort(int[] array) {
+    public static int[] minMaxSelectionSort(int[] array) {
         for (int i = 0, j = array.length - 1; i < j; i++, j--) {
             int min = array[i];
             int max = array[i];
