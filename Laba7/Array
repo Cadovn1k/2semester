@@ -1,0 +1,91 @@
+package Laba7;
+
+import java.util.Arrays;
+
+public class Array {
+    private int[] array;
+
+    public Array(){}
+
+    public Array(int[] array) {
+        this.array = array;
+    }
+
+    public int[] getArray() {
+        return array;
+    }
+
+    public void setArray(int[] array) {
+        this.array = array;
+    }
+
+    public void add(int a) {
+        if ( array.length <= 10000 ) {
+            int[] arr = Arrays.copyOf(array, array.length + 1);
+            arr[array.length] = a;
+            setArray(arr);
+        }
+    }
+
+    public void add(int index, int a) {
+        if ( array.length <= 10000 ) {
+            int[] arr = Arrays.copyOf(array, array.length + 1);
+            for (int i = index; i < arr.length - 1; i++) {
+                arr[i + 1] = array[i];
+            }
+            arr[index] = a;
+            setArray(arr);
+        }
+    }
+
+    public int delete(int a){
+        int el = array[a];
+        int[] arr = Arrays.copyOf(array, array.length - 1);
+        for (int i = a; i < arr.length; i++) {
+            arr[i] = array[i + 1];
+        }
+        setArray(arr);
+        return el;
+    }
+
+    public int get(int i) {
+        return getArray()[i];
+    }
+
+    public void set(int index, int a){
+        int[] arr = Arrays.copyOf(array, array.length + 1);
+        arr[index] = a;
+        setArray(arr);
+    }
+
+    public int getmaxindex(){
+        int index = 0;
+        int max = array[index];
+        for (int i = 1; i < array.length; i++) {
+            if ( array[index] < array[i] )
+                index = i;
+        }
+        return index;
+    }
+
+    public int get2ndmaxindex(){
+        int maxindex = getmaxindex();
+        int index = 0;
+        for (int i = 1; i < array.length; i++) {
+            if ( array[index] < array[i] && array[i] != array[maxindex] )
+                index = i;
+        }
+        return index;
+    }
+
+    public boolean fullness(){
+        if ( array.length == 10000 )
+            return true;
+        return false;
+    }
+
+    public int actualnumberofitems(){
+        return array.length;
+    }
+
+}
