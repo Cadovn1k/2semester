@@ -5,7 +5,9 @@ import java.util.Arrays;
 public class Array {
     private int[] array;
 
-    public Array(){}
+    public Array(){
+        this.array = new int[]{};
+    }
 
     public Array(int[] array) {
         this.array = array;
@@ -89,3 +91,5 @@ public class Array {
     }
 
 }
+
+
