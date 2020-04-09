@@ -1,0 +1,505 @@
+package Laba6;
+
+public class Number5 {
+
+    public static void main(String[] args) {
+        int[] fortest = new int[]{};
+
+        int[] a = new int[]{};
+        int[] b = new int[]{1};
+
+        int nc = 100;
+        int nd = 1000;
+
+        int[] c1 = new int[nc];
+        for (int i = 0; i < c1.length; i++) {
+            c1[i] = 3;
+        }
+        int[] c2 = new int[nc];
+        for (int i = 0; i < c2.length; i++) {
+            c2[i] =(int) Math.random() * 100 - 200;
+        }
+        int[] c3 = new int[nc];
+        for (int i = 0; i < c3.length; i++) {
+            c3[i] = i + 1;
+        }
+        int[] c4 = new int[nc];
+        for (int i = 0; i < c4.length; i++) {
+            c4[i] = 100 - 1 - i;
+        }
+
+        int[] d1 = new int[nd];
+        for (int i = 0; i < c1.length; i++) {
+            c1[i] = 3;
+        }
+        int[] d2 = new int[nd];
+        for (int i = 0; i < c2.length; i++) {
+            c2[i] =(int) Math.random() * 1000 - 2000;
+        }
+        int[] d3 = new int[nd];
+        for (int i = 0; i < c3.length; i++) {
+            c3[i] = i + 1;
+        }
+        int[] d4 = new int[nd];
+        for (int i = 0; i < c4.length; i++) {
+            c4[i] = 100 - 1 - i;
+        }
+
+        System.out.println("Скорость выполнения сортировки выбором : ");
+
+        int nn = 10;
+        int fora = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = selectionSort(a);
+            long end = System.nanoTime();
+            fora += end - start;
+        }
+        System.out.println("Пустого массива в наносекундах = " + ( fora / nn ));
+
+        int forb = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = selectionSort(b);
+            long end = System.nanoTime();
+            forb += end - start;
+        }
+        System.out.println("Массива из одного элемента в наносекундах = " + ( forb / nn ));
+
+        int forc1 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = selectionSort(c1);
+            long end = System.nanoTime();
+            forc1 += end - start;
+        }
+        System.out.println("Массива из сотни одинаковых элементов в наносекундах = " + ( forc1 / nn ));
+
+        int forc2 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = selectionSort(c2);
+            long end = System.nanoTime();
+            forc2 += end - start;
+        }
+        System.out.println("Массива из сотни случайных элемента в наносекундах = " + ( forc2 / nn ));
+
+        int forc3 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = selectionSort(c3);
+            long end = System.nanoTime();
+            forc3 += end - start;
+        }
+        System.out.println("Массива из сотни элементов в порядке возрастания в наносекундах = " + ( forc3 / nn ));
+
+        int forc4 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = selectionSort(c4);
+            long end = System.nanoTime();
+            forc4 += end - start;
+        }
+        System.out.println("Массива из сотни элементов в порядке убывания в наносекундах = " + ( forc4 / nn ));
+
+        int ford1 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = selectionSort(d1);
+            long end = System.nanoTime();
+            ford1 += end - start;
+        }
+        System.out.println("Массива из сотни тысяч одинаковых элементов в наносекундах = " + ( ford1 / nn ));
+
+        int ford2 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = selectionSort(d2);
+            long end = System.nanoTime();
+            ford2 += end - start;
+        }
+        System.out.println("Массива из сотни тысяч случайных элемента в наносекундах = " + ( ford2 / nn ));
+
+        int ford3 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = selectionSort(d3);
+            long end = System.nanoTime();
+            ford3 += end - start;
+        }
+        System.out.println("Массива из сотни тысяч элементов в порядке возрастания в наносекундах = " + ( ford3 / nn ));
+
+        int ford4 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = selectionSort(d4);
+            long end = System.nanoTime();
+            ford4 += end - start;
+        }
+        System.out.println("Массива из сотни тысяч элементов в порядке убывания в наносекундах = " + ( ford4 / nn ));
+
+        System.out.println();
+        System.out.println();
+
+
+        System.out.println("Скорость выполнения сортировки двунаправленным выбором : ");
+        fora = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = minMaxSelectionSort(a);
+            long end = System.nanoTime();
+            fora += end - start;
+        }
+        System.out.println("Пустого массива в наносекундах = " + ( fora / nn ));
+
+        forb = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = minMaxSelectionSort(b);
+            long end = System.nanoTime();
+            forb += end - start;
+        }
+        System.out.println("Массива из одного элемента в наносекундах = " + ( forb / nn ));
+
+        forc1 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = minMaxSelectionSort(c1);
+            long end = System.nanoTime();
+            forc1 += end - start;
+        }
+        System.out.println("Массива из сотни одинаковых элементов в наносекундах = " + ( forc1 / nn ));
+
+        forc2 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = minMaxSelectionSort(c2);
+            long end = System.nanoTime();
+            forc2 += end - start;
+        }
+        System.out.println("Массива из сотни случайных элемента в наносекундах = " + ( forc2 / nn ));
+
+        forc3 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = minMaxSelectionSort(c3);
+            long end = System.nanoTime();
+            forc3 += end - start;
+        }
+        System.out.println("Массива из сотни элементов в порядке возрастания в наносекундах = " + ( forc3 / nn ));
+
+        forc4 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = minMaxSelectionSort(c4);
+            long end = System.nanoTime();
+            forc4 += end - start;
+        }
+        System.out.println("Массива из сотни элементов в порядке убывания в наносекундах = " + ( forc4 / nn ));
+
+        ford1 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = minMaxSelectionSort(d1);
+            long end = System.nanoTime();
+            ford1 += end - start;
+        }
+        System.out.println("Массива из сотни тысяч одинаковых элементов в наносекундах = " + ( ford1 / nn ));
+
+        ford2 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = minMaxSelectionSort(d2);
+            long end = System.nanoTime();
+            ford2 += end - start;
+        }
+        System.out.println("Массива из сотни тысяч случайных элемента в наносекундах = " + ( ford2 / nn ));
+
+        ford3 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = minMaxSelectionSort(d3);
+            long end = System.nanoTime();
+            ford3 += end - start;
+        }
+        System.out.println("Массива из сотни тысяч элементов в порядке возрастания в наносекундах = " + ( ford3 / nn ));
+
+        ford4 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = minMaxSelectionSort(d4);
+            long end = System.nanoTime();
+            ford4 += end - start;
+        }
+        System.out.println("Массива из сотни тысяч элементов в порядке убывания в наносекундах = " + ( ford4 / nn ));
+
+        System.out.println();
+        System.out.println();
+
+        System.out.println("Скорость выполнения сортировки пузырьком : ");
+        fora = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = bubbleSort2(a);
+            long end = System.nanoTime();
+            fora += end - start;
+        }
+        System.out.println("Пустого массива в наносекундах = " + ( fora / nn ));
+
+        forb = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = bubbleSort2(b);
+            long end = System.nanoTime();
+            forb += end - start;
+        }
+        System.out.println("Массива из одного элемента в наносекундах = " + ( forb / nn ));
+
+        forc1 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = bubbleSort2(c1);
+            long end = System.nanoTime();
+            forc1 += end - start;
+        }
+        System.out.println("Массива из сотни одинаковых элементов в наносекундах = " + ( forc1 / nn ));
+
+        forc2 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = bubbleSort2(c2);
+            long end = System.nanoTime();
+            forc2 += end - start;
+        }
+        System.out.println("Массива из сотни случайных элемента в наносекундах = " + ( forc2 / nn ));
+
+        forc3 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = bubbleSort2(c3);
+            long end = System.nanoTime();
+            forc3 += end - start;
+        }
+        System.out.println("Массива из сотни элементов в порядке возрастания в наносекундах = " + ( forc3 / nn ));
+
+        forc4 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = bubbleSort2(c4);
+            long end = System.nanoTime();
+            forc4 += end - start;
+        }
+        System.out.println("Массива из сотни элементов в порядке убывания в наносекундах = " + ( forc4 / nn ));
+
+        ford1 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = bubbleSort2(d1);
+            long end = System.nanoTime();
+            ford1 += end - start;
+        }
+        System.out.println("Массива из сотни тысяч одинаковых элементов в наносекундах = " + ( ford1 / nn ));
+
+        ford2 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = bubbleSort2(d2);
+            long end = System.nanoTime();
+            ford2 += end - start;
+        }
+        System.out.println("Массива из сотни тысяч случайных элемента в наносекундах = " + ( ford2 / nn ));
+
+        ford3 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = bubbleSort2(d3);
+            long end = System.nanoTime();
+            ford3 += end - start;
+        }
+        System.out.println("Массива из сотни тысяч элементов в порядке возрастания в наносекундах = " + ( ford3 / nn ));
+
+        ford4 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = bubbleSort2(d4);
+            long end = System.nanoTime();
+            ford4 += end - start;
+        }
+        System.out.println("Массива из сотни тысяч элементов в порядке убывания в наносекундах = " + ( ford4 / nn ));
+
+        System.out.println();
+        System.out.println();
+
+        System.out.println("Скорость выполнения сортировки вставками : ");
+        fora = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = insertSort(a);
+            long end = System.nanoTime();
+            fora += end - start;
+        }
+        System.out.println("Пустого массива в наносекундах = " + ( fora / nn ));
+
+        forb = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = insertSort(b);
+            long end = System.nanoTime();
+            forb += end - start;
+        }
+        System.out.println("Массива из одного элемента в наносекундах = " + ( forb / nn ));
+
+        forc1 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = insertSort(c1);
+            long end = System.nanoTime();
+            forc1 += end - start;
+        }
+        System.out.println("Массива из сотни одинаковых элементов в наносекундах = " + ( forc1 / nn ));
+
+        forc2 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = insertSort(c2);
+            long end = System.nanoTime();
+            forc2 += end - start;
+        }
+        System.out.println("Массива из сотни случайных элемента в наносекундах = " + ( forc2 / nn ));
+
+        forc3 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = insertSort(c3);
+            long end = System.nanoTime();
+            forc3 += end - start;
+        }
+        System.out.println("Массива из сотни элементов в порядке возрастания в наносекундах = " + ( forc3 / nn ));
+
+        forc4 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = insertSort(c4);
+            long end = System.nanoTime();
+            forc4 += end - start;
+        }
+        System.out.println("Массива из сотни элементов в порядке убывания в наносекундах = " + ( forc4 / nn ));
+
+        ford1 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = insertSort(d1);
+            long end = System.nanoTime();
+            ford1 += end - start;
+        }
+        System.out.println("Массива из сотни тысяч одинаковых элементов в наносекундах = " + ( ford1 / nn ));
+
+        ford2 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = insertSort(d2);
+            long end = System.nanoTime();
+            ford2 += end - start;
+        }
+        System.out.println("Массива из сотни тысяч случайных элемента в наносекундах = " + ( ford2 / nn ));
+
+        ford3 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = insertSort(d3);
+            long end = System.nanoTime();
+            ford3 += end - start;
+        }
+        System.out.println("Массива из сотни тысяч элементов в порядке возрастания в наносекундах = " + ( ford3 / nn ));
+
+        ford4 = 0;
+        for (int i = 0; i < nn; i++) {
+            long start = System.nanoTime();
+            fortest = insertSort(d4);
+            long end = System.nanoTime();
+            ford4 += end - start;
+        }
+        System.out.println("Массива из сотни тысяч элементов в порядке убывания в наносекундах = " + ( ford4 / nn ));
+
+        System.out.println();
+        System.out.println();
+
+    }
+
+    public static int[] selectionSort(int[] array) {
+        for (int i = 0; i < array.length -1; i++) {
+            int index = i;
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[j] < array[index]) {
+                    index = j;
+                }
+            }
+            int min = array[index];
+            array[index] = array[i];
+            array[i] = min;}return array;
+    }
+
+    public static int[] bubbleSort2(int[] array) {
+        boolean f = false;
+        int i = 0;while ( !f ) {
+            f = true;
+            for (int j = 0; j < array.length -i -1; j++) {
+                if (array[j] > array[j + 1]) {
+                    int t = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = t;
+                    f = false;
+                }
+            }
+            i++;
+        }
+        return array;
+    }
+
+    public static int[] insertSort(int[] array) {
+        for (int i = 1; i < array.length; i++) {
+            int elem = array[i];
+            int j = i -1;
+            while (j >= 0 && array[j] > elem) {
+                array[j + 1] = array[j];
+                j--;
+            }
+            array[j + 1] = elem;
+        }
+        return array;
+    }
+
+    static int[] minMaxSelectionSort(int[] array) {
+        for (int i = 0, j = array.length - 1; i < j; i++, j--) {
+            int min = array[i];
+            int max = array[i];
+            int minindex = i;
+            int maxindex = i;
+            for (int k = i; k <= j; k++) {
+                if (array[k] > max)
+                {
+                    max = array[k];
+                    maxindex = k;
+                }
+                else if (array[k] < min)
+                {
+                    min = array[k];
+                    minindex = k;
+                }
+            }
+            swap(array, i, minindex);
+            if (array[minindex] == max)
+                swap(array, j, minindex);
+            else
+                swap(array, j, maxindex);
+        }
+        return array;
+    }
+
+    static int[] swap(int []array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+        return array;
+    }
+}
