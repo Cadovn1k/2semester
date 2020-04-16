@@ -48,7 +48,8 @@ public class Number1 {
             System.out.println("Error");
         } catch (NoSuchElementException e){
             System.out.println("Whoops");
+        } catch (Exception e){
+            System.out.println("Ошибочка");
         }
     }
 }
-
