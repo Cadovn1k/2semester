@@ -1,39 +1,54 @@
 package Laba8;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 
 public class Number1 {
+    static Scanner inp = new Scanner(System.in);
     public static void main(String[] args) throws Exception{
         try {
             DoublyLinkedList example = new DoublyLinkedList();
-            example.addLast(4);
-            example.addLast(2);
-            example.addFirst(5);
-            example.addLast(1);
-            example.addLast(3);
-            System.out.println(example.toString());
-            System.out.println("Количетсов элементов в списке = " + example.size());
-            System.out.println("Первый элемент в списке = " + example.getHead());
-            System.out.println("Последний элемент в списке = " + example.getTail());
-            System.out.println();
-            Collection newexample = new ArrayList<>();
-            newexample.add(5);
-            newexample.add(4);
-            newexample.add(2);
-            newexample.add(1);
-            newexample.add(3);
-            for (int i = 0; i < newexample.size(); i++) {
-                System.out.print(newexample.toArray()[i] + " ");
+            System.out.println("Введите 2 числа");
+            example.addLast(inp.nextInt());
+            example.addLast(inp.nextInt());
+            while ( true ) {
+                System.out.println("Введите число ");
+                String smth = inp.next();
+                if ( smth.equalsIgnoreCase("хватит") )  // с пустой строкой не получается
+                    break;
+                int s = Integer.parseInt(smth);
+                if ( Math.abs(s - example.getHead()) < Math.abs(s - example.getTail()))
+                    example.addFirst(s);
+                if ( Math.abs(s - example.getHead()) > Math.abs(s - example.getTail()) )
+                    example.addLast(s);
             }
-            System.out.println();
-            System.out.println("Количетсов элементов в списке = " + newexample.size());
-            System.out.println("Первый элемент в списке = " + newexample.toArray()[0]);
-            System.out.println("Последний элемент в списке = " + newexample.toArray()[newexample.size() - 1]);
-        } catch (Exception e){
+            System.out.println("Количество элементов в списке = " + example.size());
+            System.out.println(example.toString());
+            System.out.println("А теперь используем CollectionFramework ");
+            ArrayDeque<Integer> newexample = new ArrayDeque<>();
+            System.out.println("Введите 2 числа");
+            newexample.addLast(inp.nextInt());
+            newexample.addLast(inp.nextInt());
+            while ( true ) {
+                System.out.println("Введите число ");
+                String smth = inp.next();
+                if ( smth.equalsIgnoreCase("хватит") )  // с пустой строкой не получается
+                    break;
+                int s = Integer.parseInt(smth);
+                if ( Math.abs(s - newexample.getFirst()) < Math.abs(s - newexample.getLast()))
+                    newexample.addFirst(s);
+                if ( Math.abs(s - newexample.getFirst()) > Math.abs(s - newexample.getLast()) )
+                    newexample.addLast(s);
+            }
+            System.out.println("Количество элементов в списке = " + newexample.size());
+            int n = newexample.size();
+            for (int i = 0; i < n; i++) {
+                System.out.print(newexample.pollFirst() + " ");
+            }
+        } catch (NumberFormatException e){
             System.out.println("Error");
+        } catch (NoSuchElementException e){
+            System.out.println("Whoops");
         }
-
     }
 }
 
