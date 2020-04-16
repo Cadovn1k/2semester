@@ -1,0 +1,30 @@
+package Laba8;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class Number1 {
+    public static void main(String[] args) {
+        DoublyLinkedList example = new DoublyLinkedList();
+
+        example.addLast(4);
+        example.addLast(2);
+        example.addFirst(5);
+        example.addLast(1);
+        example.addLast(3);
+        System.out.println(example.toString());
+        System.out.println("Количетсов элементов в списке = " + example.size());
+        System.out.println("Первый элемент в списке = " + example.getHead());
+        System.out.println("Последний элемент в списке = " + example.getTail());
+        System.out.println();
+        Collection newexample = new ArrayList<>();
+        newexample.add(5);
+        newexample.add(4);
+        newexample.add(2);
+        newexample.add(1);
+        newexample.add(3);
+        System.out.println(newexample.size());
+        System.out.println("Первый элемент в списке = " + newexample.toArray()[0]);
+        System.out.println("Последний элемент в списке = " + newexample.toArray()[newexample.size() - 1]);
+    }
+}
