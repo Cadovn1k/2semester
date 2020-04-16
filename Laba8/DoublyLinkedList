@@ -1,0 +1,131 @@
+package Laba8;
+
+import java.util.NoSuchElementException;
+
+public class DoublyLinkedList {
+    // вложенный класс, соответствующий одному элементу, узлу списка
+    static class Node {
+        private int value;
+        private Node next;
+        private Node prev;
+        Node(int element, Node next, Node prev) {
+            this.value = element;
+            this.next = next;
+            this.prev = prev;
+        }
+        Node getNext() {
+            return next;
+        }
+        Node getPrev() {
+            return prev;
+        }
+        int getValue(){
+            return value;
+        }
+    }
+    // основные компоненты списка
+    private Node head; //начало
+    private Node tail; // конец
+    private int size; // количество элементов
+    public DoublyLinkedList() {
+        size = 0;
+    }
+    public int getHead() {
+        return head.getValue();
+    }
+    public int getTail() {
+        return tail.getValue();
+    }
+    public int size() {
+        return size;
+    }
+    public boolean isEmpty() {
+        return size == 0;
+    }
+    public String toString() {
+        Node tmp = head;
+        StringBuilder result = new StringBuilder();
+        while (tmp != null) {
+            result.append(tmp.value).append(" ");
+            tmp = tmp.next;
+        }
+        return result.toString();
+    }
+    // основные операции над элементами списка
+    // 1 - добавить в начало списка
+    void addFirst(int elem) {
+        Node tmp = new Node(elem, head, null);
+        if (head != null) {
+            head.prev = tmp;
+        }
+        head = tmp;
+        if (tail == null) {
+            tail = tmp;
+        }
+        size++;
+    }
+    // 2 - добавить в конец списка
+    void addLast(int elem) {
+        Node tmp = new Node(elem, null, tail);
+        if (tail != null) {
+            tail.next = tmp;
+        }
+        tail = tmp;
+        if (head == null) {
+            head = tmp;
+        }
+        size++;
+    }
+    // 3 -вставить перед текущим элементом curr
+    void add(int elem, Node curr) {
+        if (curr == null) {
+            throw new NoSuchElementException();
+        }
+        Node tmp = new Node(elem, curr, null);
+        if (curr.prev != null) {
+            curr.prev.next = tmp;
+            tmp.prev = curr.prev;
+            curr.prev = tmp;
+        }
+        else {
+            curr.prev = tmp;
+            tmp.next = curr;
+            head = tmp;
+        }
+        size++;
+    }
+    // удалить из начала (первый)
+    public void removeFirst() {
+        if (size == 0) {
+            throw new NoSuchElementException();
+        }
+        head = head.next;
+        head.prev = null;
+        size--;
+    }
+    // удалить последний элемент
+    public void removeLast() {
+        if (size == 0) {
+            throw new NoSuchElementException();
+        }
+        tail = tail.prev;
+        tail.next = null;
+        size--;
+    }
+    // удалить текущий элемент curr
+    public void remove(Node curr) {
+        if (curr == null)
+            throw new NoSuchElementException();
+        if (curr.prev == null) {
+            removeFirst();
+            return;
+        }
+        if (curr.next == null) {
+            removeLast();
+            return;
+        }
+        curr.prev.next = curr.next;
+        curr.next.prev = curr.prev;
+        size--;
+    }
+}
