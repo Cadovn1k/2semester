@@ -1,0 +1,58 @@
+package Laba7;
+
+public class Number3 {
+    public static void main(String[] args) {
+        System.out.println("Проверим качество выполнения работы ");
+        MyArrayStackForNumber3 example = new MyArrayStackForNumber3();
+        String str = "[()]";
+        for (int i = 0; i < str.length(); i++) {
+            example.push(str.charAt(i));
+        }
+        int result = example.check();
+        if ( result == -1 )
+            System.out.println("YES");
+        else System.out.println(result);
+
+        str = "()[]}";
+        example = new MyArrayStackForNumber3();
+        for (int i = 0; i < str.length(); i++) {
+            example.push(str.charAt(i));
+        }
+        result = example.check();
+        if ( result == -1 )
+            System.out.println("YES");
+        else System.out.println(result);
+
+        str = "{{{[][][]";
+        example = new MyArrayStackForNumber3();
+        for (int i = 0; i < str.length(); i++) {
+            example.push(str.charAt(i));
+        }
+        result = example.check();
+        if ( result == -1 )
+            System.out.println("YES");
+        else System.out.println(result);
+
+        str = "([](){([])})";
+        example = new MyArrayStackForNumber3();
+        for (int i = 0; i < str.length(); i++) {
+            example.push(str.charAt(i));
+        }
+        result = example.check();
+        if ( result == -1 )
+            System.out.println("YES");
+        else System.out.println(result);
+
+        str = "((({[]})";
+        example = new MyArrayStackForNumber3();
+        for (int i = 0; i < str.length(); i++) {
+            example.push(str.charAt(i));
+        }
+        result = example.check();
+        if ( result == -1 )
+            System.out.println("YES");
+        else System.out.println(result);
+
+
+    }
+}
