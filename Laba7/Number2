@@ -1,0 +1,24 @@
+package Laba7;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Number2 {
+    public static void main(String[] args) {
+        try {
+            File file = new File("Text.txt");
+            Scanner inp = new Scanner(file);
+            MyArrayStackForNumber2 example = new MyArrayStackForNumber2();;
+            while (inp.hasNextLine()) {
+                example.push(inp.nextLine().length());
+            }
+            System.out.println("Номер самой короткой строки файла = " + (example.findMin() + 1) +
+                    " , её длина = " + example.getElement(example.findMin()));
+
+        } catch (IOException e){
+            System.out.println("ERROR");
+        }
+
+    }
+}
