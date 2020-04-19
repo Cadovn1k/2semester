@@ -6,14 +6,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Number1 {
-    public Number1() throws FileNotFoundException {
-    }
-
     public static void main(String[] args) throws FileNotFoundException {
         try {
             File file = new File("Text.txt");
             Scanner inp = new Scanner(file);
-            Array example = new Array();
+            ArrayForNumber1 example = new ArrayForNumber1();
             while (inp.hasNextLine()) {
                 example.add(inp.nextLine().length());
             }
