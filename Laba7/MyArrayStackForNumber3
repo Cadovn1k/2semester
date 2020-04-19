@@ -1,0 +1,113 @@
+package Laba7;
+
+import java.util.Arrays;
+import java.util.EmptyStackException;
+
+public class MyArrayStackForNumber3 {
+    private char[] items;
+    private int top;
+
+    public MyArrayStackForNumber3() {
+        items = new char[1_000_000];
+    }
+
+    public MyArrayStackForNumber3(char[] items, int top) {
+        this.items = items;
+        this.top = top;
+    }
+
+    public int pop() {
+        if (isEmpty())
+            throw new EmptyStackException();
+        return items[--top];
+    }
+
+    public void push (char a) {
+        if (isFull())
+            throw new EmptyStackException();
+        items[top++] = a;
+    }
+
+    public boolean isEmpty() {
+        return top == 0;
+    }
+
+    public boolean isFull() {
+        return top == items.length;
+    }
+
+    public int check() {
+        int[] a = new int[top];
+        int border = 0;
+        int hm = -1;
+        if (items[0] == ')' || items[0] == ']' || items[0] == '}')
+            return 1;
+        for (int i = 0; i < top; i++) {
+            if (items[i] == '(') {
+                a[border] = 1;
+                border++;
+            }
+            if (items[i] == '[') {
+                a[border] = 2;
+                border++;
+            }
+            if (items[i] == '{') {
+                a[border] = 3;
+                border++;
+            }
+            if (items[i] == ')') {
+                boolean gg = true;
+                for (int j = 0; j < border; j++) {
+                    if ( a[j] == 1 ) {
+                        a[j] = 0;
+                        gg = false;
+                        break;
+                    }
+                }
+                if ( gg )
+                    return i + 1;
+            }
+            if (items[i] == ']') {
+                boolean gg = true;
+                if (border == 0)
+                    return -1;
+                for (int j = 0; j < border; j++) {
+                    if ( a[j] == 2 ) {
+                        a[j] = 0;
+                        gg = false;
+                        break;
+                    }
+                }
+                if ( gg )
+                    return i + 1;
+            }
+            if (items[i] == '}') {
+                boolean gg = true;
+                for (int j = 0; j < border; j++) {
+                    if ( a[j] == 3 ) {
+                        a[j] = 0;
+                        gg = false;
+                        break;
+                    }
+                }
+                if ( gg )
+                    return i + 1;
+            }
+        }
+        for (int i = 0; i < border; i++) {
+            if ( a[i] != 0 )
+                return i + 1;
+        }
+        return hm;
+    }
+
+    public int getElement(int i){
+        return items[i];
+    }
+
+    @Override
+    public String toString() {
+        return "Элементы стека : " + Arrays.toString(items);
+    }
+
+}
