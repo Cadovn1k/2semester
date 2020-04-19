@@ -1,0 +1,59 @@
+package Laba7;
+
+class MyArrayQueueForNumber4 {
+    private String[] items;
+    private int top;
+    private int tail;
+    public MyArrayQueueForNumber4() {
+        items = new String[1_000_000];
+    }
+    public MyArrayQueueForNumber4(String[] items, int top, int tail) {
+        this.items = items;
+        this.top = top;
+        this.tail = tail;
+    }
+    public String dequeue() {
+        if (isEmpty())
+            throw new QueueException();
+        return items[top++];
+    }
+    public void enqueue (String a) {
+        if (isFull())
+            throw new QueueException();
+        items[tail++] = a;
+    }
+    public boolean isEmpty() {
+        return top == tail;
+    }
+    public boolean isFull() {
+        return tail == items.length;
+    }
+
+    public void write(){
+        for (int i = top; i < tail; i++) {
+            System.out.print(items[i] + " ");
+        }
+    }
+    // методы для номера 5
+    public String dequeueFirst() {
+        if (isEmpty())
+            throw new QueueException();
+        return items[top++];
+    }
+    public String dequeueLast() {
+        if (isEmpty())
+            throw new QueueException();
+        return items[tail--];
+    }
+    public void enqueueFirst (String a) {
+        if (isFull())
+            throw new QueueException();
+        items[top++] = a;
+    }
+    public void enqueueLast (String a) {
+        if (isFull())
+            throw new QueueException();
+        items[tail++] = a;
+    }
+}
+class QueueException extends IllegalArgumentException {}
