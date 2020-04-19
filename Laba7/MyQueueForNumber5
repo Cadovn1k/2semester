@@ -1,0 +1,71 @@
+package Laba7;
+
+public class MyQueueForNumber5 {
+
+    private String[] items;
+    private int top;
+    private int tail;
+
+    public MyQueueForNumber5() {
+        items = new String[1_000_000];
+        this.top = 500_000;
+        this.tail = 500_000;
+    }
+
+    public MyQueueForNumber5(String[] items, int top, int tail) {
+        this.items = items;
+        this.top = top;
+        this.tail = tail;
+    }
+
+    public String dequeue() {
+        if (isEmpty())
+            throw new QueueException();
+        return items[top++];
+    }
+
+    public String dequeueFirst() {
+        if (isEmpty())
+            throw new QueueException();
+        return items[top++];
+    }
+
+    public String dequeueLast() {
+        if (isEmpty())
+            throw new QueueException();
+        return items[--tail];
+    }
+
+    public void enqueue (String a) {
+        if (isFull())
+            throw new QueueException();
+        items[tail++] = a;
+    }
+
+    public void enqueueFirst (String a) {
+        if (isFull())
+            throw new QueueException();
+        items[--top] = a;
+    }
+    public void enqueueLast (String a) {
+        if (isFull())
+            throw new QueueException();
+        items[tail++] = a;
+    }
+
+    public boolean isEmpty() {
+        return top == tail;
+    }
+
+    public boolean isFull() {
+        return tail == items.length;
+    }
+
+    public void write(){
+        for (int i = top; i < tail; i++) {
+            System.out.print(items[i] + " ");
+        }
+    }
+
+
+}
