@@ -2,18 +2,18 @@ package Laba7;
 
 import java.util.Arrays;
 
-public class Array {
+public class ArrayForNumber1 {
     private int[] array;
 
-    public Array(){
+    public ArrayForNumber1(){
         this.array = new int[]{};
     }
 
-    public Array(int length){
+    public ArrayForNumber1(int length){
         this.array = new int[length];
     }
 
-    public Array(int[] array) {
+    public ArrayForNumber1(int[] array) {
         this.array = array;
     }
 
@@ -95,5 +95,4 @@ public class Array {
     }
 
 }
-
 
