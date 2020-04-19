@@ -1,0 +1,25 @@
+package Laba7;
+
+import java.util.Scanner;
+
+public class Number4 {
+    static Scanner inp = new Scanner(System.in);
+    public static void main(String[] args)throws QueueException {
+        try {
+        MyArrayQueueForNumber4 example = new MyArrayQueueForNumber4();
+        System.out.println("Введите строку ");
+        String str = inp.nextLine();
+//        String str = "EAS * Yes * QUE * * * stop * IO * to * N *";  // в конце для этой строки выведется N
+        for (int i = 0; i < str.length(); i++) {
+            if ( str.charAt(i) >= 65 && str.charAt(i) <= 90 )
+                example.enqueue(String.valueOf(str.charAt(i)));
+            if ( str.charAt(i) == '*' )
+                System.out.println(example.dequeue());
+        }
+        System.out.println("Результатом этих действий будет ");
+        example.write();
+        } catch ( QueueException e ){
+            System.out.println("Вы пытаетесь удалить элемент из пустой очереди или вставить элемент в переполненную очередь!");
+        }
+    }
+}
