@@ -1,0 +1,78 @@
+package Laba9;
+
+import java.util.*;
+
+public class TreeNode {
+    private String data;
+    private TreeNode parent;
+    private List<TreeNode> children;
+
+    public TreeNode(String data){
+        this.data = data;
+        this.parent = null;
+        this.children = new ArrayList<>();
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public TreeNode getParent() {
+        return parent;
+    }
+
+    public void setParent(TreeNode parent) {
+        this.parent = parent;
+    }
+
+    public List<TreeNode> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<TreeNode> children) {
+        this.children = children;
+    }
+
+    public TreeNode add(String value){
+        TreeNode newNode = new TreeNode(value);
+        newNode.parent = this;
+        this.children.add(newNode);
+        return newNode;
+    }
+
+    public void preOrderTraversalPrint_Iter(TreeNode node){
+        if (node == null) return;
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(node);
+        while ( !stack.isEmpty() ){
+            node = stack.pop();
+            System.out.print(node.getData() + " ");
+            if ( node.getChildren() != null ) {
+                int i = 0;
+                while ( !node.getChildren().isEmpty() ){
+                    stack.push(node.getChildren().remove(i));
+                    i++;
+                }
+            }
+        }
+    }
+
+    public void inLevelTraversalPrint(TreeNode node){
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.add(node);
+        while ( !queue.isEmpty() ){
+            node = queue.poll();
+            System.out.print(node.getData() + " ");
+            int i = 0;
+            while ( !node.getChildren().isEmpty() ){
+                queue.add(node.getChildren().remove(i));
+                i++;
+            }
+        }
+    }
+
+}
