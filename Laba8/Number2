@@ -1,0 +1,42 @@
+package Laba8;
+
+import java.util.Arrays;
+
+public class Number2 {
+    public static void main(String[] args) {
+        CircularLinkedList example = new CircularLinkedList();
+        example.Add(4);
+        example.Add(1);
+        example.Add(6);
+        example.Add(9);
+        example.Add(5);
+        System.out.println(example.toString());
+        System.out.println("Первый элемент в списке :  " + example.getHead());
+        System.out.println("Текущий элемент в списке : " + example.getCurrent());
+        example.AddAfter(7);
+        System.out.println(example.toString());
+        example.AddBefore(3);
+        System.out.println(example.toString());
+        CircularLinkedList exx = new CircularLinkedList();
+        exx.Add(10);
+        exx.Add(2);
+        example.AddCollectionAfter(exx);
+        System.out.println(example.toString());
+        Object[] obj = new Object[]{1,2,3,4,5};
+        CircularLinkedList li = new CircularLinkedList();
+        li = li.Copyfrom(obj);
+        System.out.println(li.toString());
+        Object[] arr = example.CopyTo();
+        System.out.println(Arrays.toString(arr));
+        System.out.println("Наша текущая строка : " + example.toString());
+        example.CurrenttoHead();
+        int k = 2; // количество команд
+        String[] arrs = new String[]{"R 3","L 2"};
+        for (int i = 0; i < arrs.length; i++) {
+            if ( arrs[i].charAt(0) == 'R' )
+                example.RemoveAfter(Integer.parseInt(arrs[i].substring(2)));
+            else example.RemoveBefore(Integer.parseInt(arrs[i].substring(2)));
+        }
+        System.out.println(example.toString());
+    }
+}
