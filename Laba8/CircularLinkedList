@@ -1,0 +1,234 @@
+package Laba8;
+
+class Node<T> {
+        public T data;
+        public Node<T> Next;
+
+        public Node(T data) {
+        this.data = data;
+        }
+
+        public T getData() {
+            return data;
+        }
+
+        public void setData(T data) {
+            this.data = data;
+        }
+
+        public Node<T> getNext() {
+            return Next;
+        }
+
+        public void setNext(Node<T> next) {
+            Next = next;
+        }
+
+}
+
+public class CircularLinkedList<T> {  // кольцевой связный список
+    Node<T> head; // головной/первый элемент
+    Node<T> tail; // последний/хвостовой элемент
+    Node<T> current; // текущий элемент
+    int count;  // количество элементов в списке
+
+    public void CurrenttoHead() {
+        this.current = head;
+    }
+
+    public T getCurrent() {
+        return current.getData();
+    }
+
+    public T getHead() {
+        return head.getData();
+    }
+
+    public T getTail() {
+        return tail.getData();
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    // добавление элемента
+    public void Add(T data) {
+        Node<T> node = new Node<T>(data);
+        if (head == null) {     // если список пуст
+            head = node;
+            tail = node;
+            tail.Next = head;
+        } else {
+            node.Next = head;
+            tail.Next = node;
+            tail = node;
+        }
+        current = node;
+        count++;
+    }
+
+    public void AddAfter(T data) {
+        Node<T> node = new Node<T>(data);
+        if (current == tail) {
+            current.Next = node;
+            tail = node;
+            tail.Next = head;
+        } else {
+            Node<T> nodenext = current.Next;
+            current.Next = node;
+            node.Next = nodenext;
+        }
+        current = node;
+        count++;
+    }
+
+    public void AddBefore(T data) {
+        Node<T> node = new Node<T>(data);
+        Node<T> nodecur = current;
+        while (current.Next != nodecur) {
+            current = current.Next;
+        }
+        if (current.Next == head) {
+            tail.Next = node;
+            node.Next = head;
+            head = node;
+        } else {
+            nodecur = current.Next;
+            current.Next = node;
+            node.Next = nodecur;
+        }
+        current = node;
+        count++;
+    }
+
+    public void AddCollectionAfter(CircularLinkedList list) {
+        Node<T> h = list.head;
+        do{
+            AddAfter(h.getData());
+            h = h.Next;
+        } while (h != list.head);
+    }
+
+    public void RemoveAfter(int R) {
+        Node<T> cr = current;
+        if (R == count)
+            Clear();
+        if (R >= count)
+            throw new IndexOutOfBoundsException();
+        T data = (T) current.Next;
+        int i = 0;
+        Node<T> previous = null;
+        if (count == 0) return;
+        while (i <= R) {
+            if (current.equals(data)) {
+                if (previous != null) {     // убираем узел current, теперь previous ссылается не на current, а на current.Next
+                    if (head == current)
+                        head = current.Next;
+                    if (current == tail)        // Если узел последний,
+                        tail = previous;
+                    previous.Next = current.Next;
+                    current = current.Next;
+                            // изменяем переменную tail
+                    data = (T) current;
+                } else {                  // если удаляется первый элемент
+                    if (count == 1)      // если в списке всего один элемент
+                        head = tail = current = null;
+                    else {
+                        previous.Next = current.Next;
+                        current = current.Next;
+                        head = current.Next;
+                        tail.Next = current.Next;
+                    }
+                }
+                count--;
+            }
+            if (previous == null) {
+                previous = current;
+                current = current.Next;
+            }
+            i++;
+        }
+        current = cr;
+    }
+
+    public void RemoveBefore(int L){
+        Node<T> c = current;
+        if (L == count)
+            Clear();
+        if (L >= count)
+            throw new IndexOutOfBoundsException();
+        int i = 1;
+        boolean findhead = false;
+        boolean findtail = false;
+        Node<T> data = null;
+        do {
+            if ( current == head)
+                findhead = true;
+            if ( current == tail )
+                findtail = true;
+            current = current.Next;
+            if ( i == count - L - 1 )
+                data = current;
+            i++;
+        } while ( i <= count);
+        if ( findhead )
+            head = c;
+        if ( findtail )
+            tail = data;
+        current = data;
+        RemoveAfter(L);
+    }
+
+    public boolean IsEmpty() {
+        return count == 0;
+    }
+
+    public void Clear() {
+        head = null;
+        tail = null;
+        count = 0;
+    }
+
+    public boolean Contains(T data) {
+        Node<T> current = head;
+        if (current == null) return false;
+        do {
+            if (current.equals(data))
+                return true;
+            current = current.Next;
+        }
+        while (current != head);
+        return false;
+    }
+
+    public Object[] CopyTo() {
+        Object[] obj = new Object[count];
+        Node curr = head;
+        int i = 0;
+        do {
+            obj[i++] = curr.data;
+            curr = curr.Next;
+        } while (curr != head);
+        return obj;
+    }
+
+    public CircularLinkedList Copyfrom(Object[] array){
+        CircularLinkedList list = new CircularLinkedList();
+        for (int i = 0; i < array.length; i++) {
+            list.Add(array[i]);
+        }
+        return list;
+    }
+
+    public String toString() {
+        Node<T> tmp = head;
+        String res = "";
+        do {
+            res += tmp.getData() + " ";
+            tmp = tmp.Next;
+        } while (tmp != head);
+        return res;
+    }
+}
+
