@@ -1,0 +1,59 @@
+package Laba9;
+
+public class Main1 {
+    public static void main(String[] args) {
+        MyTreeNode root = new MyTreeNode("Вася");
+        MyTreeNode John = root.add("Джон");
+        MyTreeNode Elizabeth = root.add("Элизабет");
+        MyTreeNode Kate = root.add("Кейт");
+
+        MyTreeNode Pet9 = John.add("Петя");
+        MyTreeNode Jen9 = John.add("Женя");
+
+        MyTreeNode Lesha = Pet9.add("Леша");
+        MyTreeNode Marat = Pet9.add("Марат");
+        MyTreeNode Dawa = Jen9.add("Даша");
+        MyTreeNode Son9 = Jen9.add("Соня");
+        MyTreeNode Tol9 = Jen9.add("Толя");
+        MyTreeNode Kol9 = Jen9.add("Коля");
+
+        MyTreeNode A = Elizabeth.add("А");
+        MyTreeNode B = Elizabeth.add("Б");
+        MyTreeNode V = Elizabeth.add("В");
+        MyTreeNode G = Elizabeth.add("Г");
+        MyTreeNode D = Elizabeth.add("Д");
+
+        MyTreeNode NB = Kate.add("Наталья Борисовна");
+        MyTreeNode AN = Kate.add("Антонина Николаевна");
+        MyTreeNode Mila = AN.add("Мила");
+        MyTreeNode OA = Kate.add("Осип Абрамович");
+
+        root.preOrderTraversalPrint_Iter(root);
+        System.out.println();
+        root.inLevelTraversalPrint(root);
+        System.out.println();
+
+        MyTreeNode Ven9 = OA.add("Веня");
+        MyTreeNode Ben9 = OA.add("Беня");
+
+        MyTreeNode X = Lesha.add("X");
+        MyTreeNode Y = Lesha.add("Y");
+        MyTreeNode Z = Lesha.add("Z");
+
+        Mila.deleteNode();
+        AN.deleteNode();
+
+        Pet9.deleteNode();
+
+        MyTreeNode Son9v2 = Son9.advance();
+        Tol9.deleteNode();
+        MyTreeNode Tol9v2 = Son9v2.add("Толя");
+        MyTreeNode Robin = Son9v2.add("Робин");
+
+        root.write(root);
+
+//        root.inLevelTraversalPrint(root);
+//        System.out.println();
+//        root.preOrderTraversalPrint_Iter(root);
+    }
+}
