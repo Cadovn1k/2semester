@@ -1,0 +1,155 @@
+package Laba9;
+
+import java.util.*;
+
+public class MyTreeNode {
+    private String data;
+    private MyTreeNode parent;
+    private List<MyTreeNode> children;
+
+    public MyTreeNode(String data) {
+        this.data = data;
+        this.parent = null;
+        this.children = new ArrayList<>();
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public MyTreeNode getParent() {
+        return parent;
+    }
+
+    public void setParent(MyTreeNode parent) {
+        this.parent = parent;
+    }
+
+    public List<MyTreeNode> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<MyTreeNode> children) {
+        this.children = children;
+    }
+
+    public MyTreeNode add(String value) {
+        MyTreeNode newNode = new MyTreeNode(value);
+        newNode.parent = this;
+        this.children.add(newNode);
+        return newNode;
+    }
+
+    public void preOrderTraversalPrint_Iter(MyTreeNode node) {
+        if (node == null) return;
+        Stack<MyTreeNode> stack = new Stack<>();
+        stack.push(node);
+        while (!stack.isEmpty()) {
+            node = stack.pop();
+            System.out.print(node.getData() + ", ");
+            if (node.getChildren() != null) {
+                for (int i = 0; i < node.getChildren().size(); i++) {
+                    stack.push(node.getChildren().get(node.getChildren().size() - 1 - i));
+                }
+            }
+        }
+    }
+
+        public void inLevelTraversalPrint(MyTreeNode node) {
+        Queue<MyTreeNode> queue = new ArrayDeque<>();
+        queue.add(node);
+        while (!queue.isEmpty()) {
+            node = queue.poll();
+            System.out.print(node.getData() + ", ");
+            for (int i = 0; i < node.getChildren().size(); i++) {
+                queue.add(node.getChildren().get(i));
+            }
+        }
+    }
+
+//    public void postOrderTraversalPrint_Iter(MyTreeNode node) {
+//        MyTreeNode nd = node;
+//        if (nd == null) return;
+//        Stack<MyTreeNode> stack = new Stack<>();
+//        MyTreeNode lastVisit = null;
+//        while (!stack.isEmpty() || nd != null) {
+//            if (nd != null)
+//                stack.push(nd);
+//            MyTreeNode pn = stack.peek();
+//            if (pn.getChildren() != null && lastVisit != pn.getChildren()){
+//                for (int i = pn.getChildren().size() - 1; i >= 0; i--) {
+//                        nd = pn.getChildren().remove(i);
+//                }
+//            }
+//            else {
+//                System.out.print(pn.getData() + ", ");
+//                lastVisit = stack.pop();
+//            }
+//        }
+//    }
+
+    public void deleteNode(){
+        if ( parent != null ){
+            int index = this.parent.getChildren().indexOf(this);
+            this.parent.getChildren().remove(this);
+            for ( MyTreeNode each : getChildren() ){
+                each.setParent(this.parent);
+            }
+            this.parent.getChildren().addAll(index, this.getChildren());
+        } else deleteNode();
+        this.getChildren().clear();
+    }
+
+    public MyTreeNode deleteRootNode(){
+        if (parent == null)
+            throw new IllegalStateException("Корня нет");
+        MyTreeNode newParent = null;
+        if ( !getChildren().isEmpty() ){
+            newParent = getChildren().get(0);
+            newParent.setParent(null);
+            getChildren().remove(0);
+            for ( MyTreeNode each : getChildren() ){
+                each.setParent(newParent);
+            }
+            newParent.getChildren().addAll(getChildren());
+        }
+        this.getChildren().clear();
+        return newParent;
+    }
+
+    public MyTreeNode advance(){
+        MyTreeNode node = this;
+        MyTreeNode parent = node.parent.parent;
+        this.deleteNode();
+        node = parent.add(node.data);
+        return node;
+    }
+
+    public void write(MyTreeNode node){
+        if (node == null) return;
+        Stack<MyTreeNode> stack = new Stack<>();
+        stack.push(node);
+        while (!stack.isEmpty()) {
+            node = stack.pop();
+            if ( node.getParent() != null )
+            System.out.print("(" + node.getParent().getData() +") " );
+            else System.out.print("() ");
+            System.out.print(node.getData() + ", ");
+            for (int i = 0; i < node.getChildren().size(); i++) {
+                System.out.print(node.getChildren().get(i).getData());
+                if ( i != node.getChildren().size() - 1 )
+                    System.out.print("-");
+            }
+            System.out.println("\n");
+            if (node.getChildren() != null) {
+                for (int j = 0; j < node.getChildren().size(); j++) {
+                    stack.push(node.getChildren().get(node.getChildren().size() - 1 - j));
+                }
+            }
+        }
+    }
+}
