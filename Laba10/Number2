@@ -1,0 +1,61 @@
+package Laba10;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Number2 {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.setSize(400,300);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Конвертор валют");
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(4,2,10,10));
+
+        JTextField txt1 = new JTextField(10);
+
+        JLabel lbl1 = new JLabel("Эта программа вычисляет значение факториала целого числа ");
+        lbl1.setHorizontalAlignment(SwingConstants.LEFT);
+
+        JLabel lbl11 = new JLabel("");
+        lbl11.setHorizontalAlignment(SwingConstants.RIGHT);
+
+        JLabel lbl2 = new JLabel("Введите целое число");
+        lbl2.setHorizontalAlignment(SwingConstants.LEFT);
+
+        JLabel lblfact = new JLabel("Ответ");
+        lblfact.setHorizontalAlignment(SwingConstants.LEFT);
+
+        JTextField txtfact = new JTextField(10);
+        txtfact.setEditable(false);
+
+        panel.add(lbl1);
+        panel.add(lbl11);
+        panel.add(lbl2);
+        panel.add(txt1);
+        panel.add(lblfact);
+        panel.add(txtfact);
+        panel.add(new JLabel());
+
+        JButton calc = new JButton("Вычислить факториал");
+        calc.setSize(20,10);
+        calc.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int a = Integer.parseInt(txt1.getText());
+                int c = 1;
+                for (int i = 1; i <= a; i++) {
+                    c = c * i;
+                }
+                txtfact.setText(Integer.toString(c));
+            }
+        });
+        panel.add(calc);
+        frame.add(panel);
+        frame.setVisible(true);
+
+
+    }
+}
