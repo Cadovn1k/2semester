@@ -1,0 +1,64 @@
+package Laba10;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Number4 {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.setSize(400,300);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Попадание в область");
+
+        JPanel panel = new JPanel();
+
+        JLabel imageLabel = new JLabel(new ImageIcon("fornumber4.png"));
+        panel.add(imageLabel);
+
+        JLabel txt1 = new JLabel("Координаты точки на плоскости");
+        panel.add(txt1);
+
+        JLabel txt2 = new JLabel("X = ");
+        JLabel txt3 = new JLabel("Y = ");
+
+        JTextField X = new JTextField(10);
+        JTextField Y = new JTextField(10);
+
+//        JTextField res = new JTextField(30);
+//        res.setEditable(false);
+        JLabel res = new JLabel();
+
+        panel.add(txt2);
+        panel.add(X);
+        panel.add(txt3);
+        panel.add(Y);
+        panel.add(new JLabel());
+
+        JButton btn = new JButton("Проверить");
+        btn.setSize(50,20);
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double x = Double.parseDouble(X.getText());
+                double y = Double.parseDouble(Y.getText());
+                if ( y - 2 * x <= 6 && -3 <= x && x <= 0 && 0 <= y && y <= 6
+                        || x * x + y * y <= 36 && 0 <= x && x <= 3 && -6 <= y && y <= 6 ){
+
+                    res.setText("Точка (" + x + ";" + y + ") лежит в этой области");
+                    res.setForeground(Color.blue);
+                }
+                else {
+                    res.setText("Точка (" + x + ";" + y + ") не попала в эту область");
+                    res.setForeground(Color.red);
+                }
+            }
+        });
+    panel.add(btn);
+    panel.add(res);
+    frame.add(panel);
+    frame.setVisible(true);
+
+    }
+}
