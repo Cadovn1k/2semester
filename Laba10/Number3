@@ -1,0 +1,99 @@
+package Laba10;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Number3 {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.setSize(400,300);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Решение Квадратного Уравнения");
+
+        JPanel panel = new JPanel();
+
+        JLabel txt1 = new JLabel("Введите коэфиценты");
+        panel.add(txt1);
+
+        JTextField x2 = new JTextField(10);
+        panel.add(x2);
+
+        JLabel txtx2 = new JLabel("X^2 + ");
+        panel.add(txtx2);
+
+        JTextField x = new JTextField(10);
+        panel.add(x);
+
+        JLabel txtx = new JLabel("X + ");
+        panel.add(txtx);
+
+        JTextField n = new JTextField(10);
+        panel.add(n);
+
+        JLabel nn = new JLabel(" = 0");
+        panel.add(nn);
+
+        JLabel txt3 = new JLabel("Корни: x1 = ");
+        JLabel txt4 = new JLabel(" и x2 = ");
+        JLabel txt5 = new JLabel("При D = ");
+
+        JTextField x_1 = new JTextField(30);
+        x_1.setEditable(false);
+        JTextField x_2 = new JTextField(30);
+        x_2.setEditable(false);
+        JTextField D = new JTextField(30);
+        D.setEditable(false);
+
+        panel.add(txt3);
+        panel.add(x_1);
+        panel.add(txt4);
+        panel.add(x_2);
+        panel.add(txt5);
+        panel.add(D);
+        panel.add(new JLabel());
+
+
+        JButton btn = new JButton("Вычислить");
+        btn.setSize(50,20);
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double a = Double.parseDouble(x2.getText());
+                if (a != 0) {
+                    double b = Double.parseDouble(x.getText());
+                    double c = Double.parseDouble(n.getText());
+                    double d = b * b - 4 * a * c;
+                    D.setText(String.format("%.5g%n", d));
+                    if (d > 0) {
+                        x_1.setText(Double.toString(Math.ceil((-b - Math.sqrt(d)) / (2 * a))));
+                        x_2.setText(Double.toString(Math.ceil((-b + Math.sqrt(d)) / (2 * a))));
+                    }
+                    if (d == 0) {
+                        x_1.setText(String.format("%.2g%n", -b / (2 * a)));
+                        x_2.setText(String.format("%.2g%n", -b / (2 * a)));
+                    }
+                    if (d < 0) {
+                        x_1.setText(String.format("%.2g%n", -b / (2 * a)) + " - " + String.format("%.2g%n", Math.sqrt(-d) / (2 * a)) + "*i");
+                        x_2.setText(String.format("%.2g%n", -b / (2 * a)) + " + " + String.format("%.2g%n", Math.sqrt(-d) / (2 * a)) + "*i");
+                    }
+                }
+                else {      // не знаю как по-другому
+                    JFrame fr = new JFrame();
+                    fr.setSize(400, 100);
+                    fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    JPanel pp = new JPanel();
+                    JLabel ll = new JLabel("Решается не квадратное, а линейное уравнение");
+                    pp.add(ll);
+                    fr.add(pp);
+                    fr.setVisible(true);
+                }
+            }
+        });
+        panel.add(btn);
+        frame.add(panel);
+        frame.setVisible(true);
+
+    }
+}
