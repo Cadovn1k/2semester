@@ -1,0 +1,30 @@
+package Laba12;
+
+import javax.swing.*;
+
+public class Number1 {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.setSize(400,300);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Таблица умножения");
+
+        JTable table = new JTable(11,11);
+        int[] th = new int[]{1,2,3,4,5,6,7,8,9,10};
+        int row = 11,column = 11;
+        for (int i = 0; i < row; i++) {
+            table.setValueAt(i,0, i);
+            table.setValueAt(i, i,0);
+        }
+        for (int i = 0; i < th.length; i++) {
+            for (int j = 0; j < th.length; j++) {
+                table.setValueAt(th[i] * th[j], th[i],th[j]);
+            }
+        }
+        JScrollPane tblpanel = new JScrollPane(table);
+        frame.add(tblpanel);
+        frame.setVisible(true);
+
+
+    }
+}
