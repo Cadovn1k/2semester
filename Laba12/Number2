@@ -1,0 +1,34 @@
+package Laba12;
+
+import javax.swing.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Number2 {
+    public static void main(String[] args) throws FileNotFoundException {
+        File file = new File("temp2.csv");
+        Scanner inp = new Scanner(file);
+        JFrame frame = new JFrame();
+        frame.setSize(400,300);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Данные о температуре воздуха за январь 2019");
+
+        JTable table = new JTable(32,2);
+        table.setValueAt("Дата", 0,0);
+        table.setValueAt("Температура", 0, 1);
+        int n = 31;
+        int sr = 0;
+        for (int i = 1; i < n; i++) {
+            String str = inp.nextLine();
+            table.setValueAt(str.substring(0,2),i,0);
+            table.setValueAt(str.substring(11),i, 1);
+            sr += Integer.parseInt(str.substring(11));
+        }
+        table.setValueAt("Средняя температруа", n,0);
+        table.setValueAt(sr / 30, n,1);
+        JScrollPane tblpanel = new JScrollPane(table);
+        frame.add(tblpanel);
+        frame.setVisible(true);
+    }
+}
