@@ -1,0 +1,68 @@
+package Laba11;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
+
+public class Number1 {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.setSize(400,300);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("My GUI");
+
+        JPanel panel = new JPanel();
+        panel.setBackground(Color.lightGray);
+
+        JButton bt = new JButton("Рисовать");
+        bt.setSize(20,10);
+        Random rnd = new Random();
+        bt.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Graphics2D g2d = (Graphics2D)panel.getGraphics();
+                g2d.setColor(new Color(rnd.nextInt(255), rnd.nextInt(255), rnd.nextInt(255)));
+                g2d.setStroke(new BasicStroke(4.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND)); //тип окончания и соединения
+                g2d.drawRect(0,0,700,700);
+
+                g2d.setColor(new Color(rnd.nextInt(255), rnd.nextInt(255), rnd.nextInt(255)));
+                g2d.setStroke(new BasicStroke(4.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND)); //тип окончания и соединения
+                g2d.drawRect(rnd.nextInt(600),rnd.nextInt(500),70,50);
+
+                g2d.setColor(new Color(rnd.nextInt(255), rnd.nextInt(255), rnd.nextInt(255)));
+                g2d.setStroke(new BasicStroke(5.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+                g2d.drawLine(rnd.nextInt(600),rnd.nextInt(500),rnd.nextInt(500),rnd.nextInt(500));
+
+                g2d.setColor(new Color(rnd.nextInt(255), rnd.nextInt(255), rnd.nextInt(255)));
+                g2d.setStroke(new BasicStroke(10.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+                g2d.fillOval(rnd.nextInt(600),rnd.nextInt(500),50,50);
+
+                g2d.setColor(new Color(rnd.nextInt(255), rnd.nextInt(255), rnd.nextInt(255)));
+                g2d.setStroke(new BasicStroke(3.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+                g2d.drawOval(rnd.nextInt(600),rnd.nextInt(500),50,50);
+
+                g2d.setColor(new Color(rnd.nextInt(255), rnd.nextInt(255), rnd.nextInt(255)));
+                g2d.setStroke(new BasicStroke(4.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND)); //тип окончания и соединения
+                g2d.fillRect(rnd.nextInt(600),rnd.nextInt(500),70,50);
+
+                int x1 = rnd.nextInt(600);
+                int y1 = rnd.nextInt(600);
+                int x2 = rnd.nextInt(600);
+                int y2 = rnd.nextInt(600);
+                int x3 = rnd.nextInt(600);
+                int y3 = rnd.nextInt(600);
+                g2d.setColor(new Color(rnd.nextInt(255), rnd.nextInt(255), rnd.nextInt(255)));
+                g2d.setStroke(new BasicStroke(2.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+                g2d.drawLine(x1,y1, x2, y2);
+                g2d.drawLine(x2,y2, x3, y3);
+                g2d.drawLine(x3,y3, x1, y1);
+            }
+        });
+        frame.add(panel, BorderLayout.CENTER);
+        frame.add(bt, BorderLayout.SOUTH);
+        frame.setVisible(true);
+    }
+}
+
