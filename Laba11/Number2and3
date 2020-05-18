@@ -1,0 +1,406 @@
+package Laba11;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Number2and3 {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.setSize(400,300);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Рисование фигур");
+
+        JPanel panel1 = new JPanel();
+
+        JTextField x1 = new JTextField(10);
+        JTextField y1 = new JTextField(10);
+        JTextField x2 = new JTextField(10);
+        JTextField y2 = new JTextField(10);
+
+        JLabel begin = new JLabel("Начало");
+        JLabel end = new JLabel("Конец");
+        JLabel x = new JLabel("x");
+        JLabel xx = new JLabel("x");
+        JLabel y = new JLabel("y");
+        JLabel yy = new JLabel("y");
+
+        Canvas canvas = new Canvas();
+        canvas.setSize(500,500);
+        canvas.setBackground(Color.white);
+
+        panel1.add(canvas);
+        panel1.add(begin);
+        panel1.add(x);
+        panel1.add(x1);
+        panel1.add(y);
+        panel1.add(y1);
+        panel1.add(end);
+        panel1.add(xx);
+        panel1.add(x2);
+        panel1.add(yy);
+        panel1.add(y2);
+        panel1.add(new JLabel());
+
+        JButton bt = new JButton("Рисовать");
+        bt.setSize(20,10);
+        bt.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Graphics2D g2d = (Graphics2D)canvas.getGraphics();
+                g2d.setColor(Color.BLACK);
+                g2d.setStroke(new BasicStroke(3.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+                int x_1 = Integer.parseInt(x1.getText());
+                int y_1 = Integer.parseInt(y1.getText());
+                int x_2 = Integer.parseInt(x2.getText());
+                int y_2 = Integer.parseInt(y2.getText());
+                g2d.drawLine(x_1, y_1, x_2, y_2);
+            }
+        });
+        panel1.add(bt, BorderLayout.SOUTH);
+        JTabbedPane jtp = new JTabbedPane();
+        jtp.setBackground(Color.gray);
+        jtp.addTab("Линия", panel1);
+
+        JPanel panel2 = new JPanel();
+
+        JTextField xfor2 = new JTextField(10);
+        JTextField yfor2 = new JTextField(10);
+        JTextField width = new JTextField(10);
+        JTextField high = new JTextField(10);
+
+        JLabel xf2 = new JLabel("x");
+        JLabel yf2 = new JLabel("y");
+        JLabel w = new JLabel("длина");
+        JLabel h = new JLabel("ширина");
+
+        Canvas canvas2 = new Canvas();
+        canvas2.setSize(500,500);
+        canvas2.setBackground(Color.white);
+
+        panel2.add(canvas2);
+        panel2.add(xf2);
+        panel2.add(xfor2);
+        panel2.add(yf2);
+        panel2.add(yfor2);
+        panel2.add(w);
+        panel2.add(width);
+        panel2.add(h);
+        panel2.add(high);
+        panel2.add(new JLabel());
+
+        JButton bt2 = new JButton("Рисовать");
+        bt2.setSize(20,10);
+        bt2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Graphics2D g2d = (Graphics2D)canvas2.getGraphics();
+                g2d.setColor(Color.BLACK);
+                g2d.setStroke(new BasicStroke(3.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+                int x___x = Integer.parseInt(xfor2.getText());
+                int y___y = Integer.parseInt(yfor2.getText());
+                int wiw = Integer.parseInt(width.getText());
+                int hih = Integer.parseInt(high.getText());
+                g2d.drawRect(x___x,y___y,wiw,hih);
+            }
+        });
+
+        panel2.add(bt2);
+        
+        panel2.add(new JLabel());
+
+        JButton bt21 = new JButton("Закрасить");
+        bt21.setSize(20,10);
+        bt21.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Graphics2D g2d = (Graphics2D)canvas2.getGraphics();
+                g2d.setColor(Color.BLACK);
+                g2d.setStroke(new BasicStroke(3.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+                int xx_x = Integer.parseInt(xfor2.getText());
+                int yy_y = Integer.parseInt(yfor2.getText());
+                int wi = Integer.parseInt(width.getText());
+                int hi = Integer.parseInt(high.getText());
+                g2d.fillRect(xx_x,yy_y,wi,hi);
+            }
+        });
+
+        panel2.add(bt21);
+        jtp.addTab("Прямоугольник", panel2);
+
+        JPanel panel3 = new JPanel();
+
+        JTextField xfor3 = new JTextField(10);
+        JTextField yfor3 = new JTextField(10);
+        JTextField widthfor3 = new JTextField(10);
+        JTextField highfor3 = new JTextField(10);
+
+        JLabel xf3 = new JLabel("x");
+        JLabel yf3 = new JLabel("y");
+        JLabel wf3 = new JLabel("длина");
+        JLabel hf3 = new JLabel("ширина");
+
+        Canvas canvas3 = new Canvas();
+        canvas3.setSize(500,500);
+        canvas3.setBackground(Color.white);
+
+        panel3.add(canvas3);
+        panel3.add(xf3);
+        panel3.add(xfor3);
+        panel3.add(yf3);
+        panel3.add(yfor3);
+        panel3.add(wf3);
+        panel3.add(widthfor3);
+        panel3.add(hf3);
+        panel3.add(highfor3);
+        panel3.add(new JLabel());
+
+        JButton bt3 = new JButton("Рисовать");
+        bt2.setSize(20,10);
+        bt2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Graphics2D g2d = (Graphics2D)canvas3.getGraphics();
+                g2d.setColor(Color.BLACK);
+                g2d.setStroke(new BasicStroke(3.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+                int xxx = Integer.parseInt(xfor3.getText());
+                int yyy = Integer.parseInt(yfor3.getText());
+                int wii = Integer.parseInt(widthfor3.getText());
+                int hii = Integer.parseInt(highfor3.getText());
+                g2d.drawOval(xxx,yyy,wii,hii);
+            }
+        });
+
+        panel3.add(new JLabel());
+
+        JButton bt31 = new JButton("Закрасить");
+        bt31.setSize(20,10);
+        bt31.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Graphics2D g2d = (Graphics2D)canvas3.getGraphics();
+                g2d.setColor(Color.BLACK);
+                g2d.setStroke(new BasicStroke(3.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+                int xxxx = Integer.parseInt(xfor3.getText());
+                int yyyy = Integer.parseInt(yfor3.getText());
+                int wiii = Integer.parseInt(widthfor3.getText());
+                int hiii = Integer.parseInt(highfor3.getText());
+                g2d.fillOval(xxxx,yyyy,wiii,hiii);
+            }
+        });
+
+
+        panel3.add(bt3, BorderLayout.SOUTH);
+        panel3.add(bt31, BorderLayout.SOUTH);
+        jtp.addTab("Эллипс", panel3);
+
+        JPanel panel4 = new JPanel();
+
+        JTextField x1for4 = new JTextField(10);
+        JTextField y1for4 = new JTextField(10);
+        JTextField x2for4 = new JTextField(10);
+        JTextField y2for4 = new JTextField(10);
+        JTextField x3for4 = new JTextField(10);
+        JTextField y3for4 = new JTextField(10);
+
+
+        JLabel x1f4 = new JLabel("x1");
+        JLabel y1f4 = new JLabel("y1");
+        JLabel x2f4 = new JLabel("x2");
+        JLabel y2f4 = new JLabel("y2");
+        JLabel x3f4 = new JLabel("x3");
+        JLabel y3f4 = new JLabel("y3");
+
+        Canvas canvas4 = new Canvas();
+        canvas4.setSize(500,500);
+        canvas4.setBackground(Color.white);
+
+        panel4.add(canvas4);
+        panel4.add(x1f4);
+        panel4.add(x1for4);
+        panel4.add(y1f4);
+        panel4.add(y1for4);
+        panel4.add(x2f4);
+        panel4.add(x2for4);
+        panel4.add(y2f4);
+        panel4.add(y2for4);
+        panel4.add(x3f4);
+        panel4.add(x3for4);
+        panel4.add(y3f4);
+        panel4.add(y3for4);
+        panel4.add(new JLabel());
+
+        JButton bt4 = new JButton("Рисовать");
+        bt4.setSize(20,10);
+        bt4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Graphics2D g2d = (Graphics2D)canvas4.getGraphics();
+                g2d.setColor(Color.BLACK);
+                g2d.setStroke(new BasicStroke(3.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+                int x1 = Integer.parseInt(x1for4.getText());
+                int y1 = Integer.parseInt(y1for4.getText());
+                int x2 = Integer.parseInt(x2for4.getText());
+                int y2 = Integer.parseInt(y2for4.getText());
+                int x3 = Integer.parseInt(x3for4.getText());
+                int y3 = Integer.parseInt(y3for4.getText());
+                g2d.drawLine(x1,y1,x2,y2);
+                g2d.drawLine(x2,y2,x3,y3);
+                g2d.drawLine(x1,y1,x3,y3);
+            }
+        });
+
+        panel4.add(new JLabel());
+
+        panel4.add(bt4, BorderLayout.SOUTH);
+        jtp.addTab("Треугольник", panel4);
+
+        JPanel panel31 = new JPanel();
+
+        JTextField xfor31 = new JTextField(10);
+        JTextField yfor31 = new JTextField(10);
+        JTextField size = new JTextField(10);
+        JTextField deep = new JTextField(10);
+
+        JLabel xf31 = new JLabel("x");
+        JLabel yf31 = new JLabel("y");
+        JLabel sz = new JLabel("длина стороны");
+        JLabel dp = new JLabel("глубина");
+
+        Canvas canvas31 = new Canvas();
+        canvas31.setSize(500,500);
+        canvas31.setBackground(Color.white);
+
+        panel31.add(canvas31);
+        panel31.add(xf31);
+        panel31.add(xfor31);
+        panel31.add(yf31);
+        panel31.add(yfor31);
+        panel31.add(sz);
+        panel31.add(size);
+        panel31.add(dp);
+        panel31.add(deep);
+        panel31.add(new JLabel());
+
+        JButton bt31a = new JButton("Рисовать");
+        bt2.setSize(20,10);
+        bt2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Graphics2D g2d = (Graphics2D)canvas31.getGraphics();
+                g2d.setColor(Color.BLACK);
+                g2d.setStroke(new BasicStroke(3.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+                int x__x = Integer.parseInt(xfor31.getText());
+                int y__y = Integer.parseInt(yfor31.getText());
+                int s = Integer.parseInt(size.getText());
+                int d = Integer.parseInt(deep.getText());
+                Graph(panel31,g2d,x__x,y__y,s,d);
+            }
+        });
+
+        panel31.add(new JLabel());
+
+        panel31.add(bt31a, BorderLayout.SOUTH);
+        jtp.addTab("Звезда", panel31);
+
+        JPanel panel32 = new JPanel();
+
+        JTextField xfor32 = new JTextField(10);
+        JTextField yfor32 = new JTextField(10);
+        JTextField deep2 = new JTextField(10);
+
+        JLabel xf32 = new JLabel("x");
+        JLabel yf32 = new JLabel("y");
+        JLabel dp2 = new JLabel("глубина");
+
+        Canvas canvas32 = new Canvas();
+        canvas32.setSize(500,500);
+        canvas32.setBackground(Color.white);
+
+        panel32.add(canvas32);
+        panel32.add(xf32);
+        panel32.add(xfor32);
+        panel32.add(yf32);
+        panel32.add(yfor32);
+        panel32.add(dp2);
+        panel32.add(deep2);
+        panel32.add(new JLabel());
+
+        JButton bt32 = new JButton("Рисовать");
+        bt2.setSize(20,10);
+        bt2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Graphics2D g2d = (Graphics2D)canvas32.getGraphics();
+                g2d.setColor(Color.BLACK);
+                g2d.setStroke(new BasicStroke(3.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+                int x_x = Integer.parseInt(xfor32.getText());
+                int y_y = Integer.parseInt(yfor32.getText());
+                int d = Integer.parseInt(deep2.getText());
+                Point a = new Point(x_x, y_y);
+                Point b = new Point(500, y_y);
+                drawKochLine(panel32, g2d, a, b, 0, d);
+            }
+        });
+
+        panel32.add(new JLabel());
+
+        panel32.add(bt32, BorderLayout.SOUTH);
+        jtp.addTab("Снежинка", panel32);
+
+        frame.add(jtp);
+        frame.setVisible(true);
+
+    }
+
+    public static void Graph(JPanel panel, Graphics2D g2d, int x, int y, int size, int deep){
+        g2d.drawRect(x, y, size, size);
+        if ( deep != 0 ) {
+            Graph(panel, g2d, x - (size / 8), y - (size / 4) + (size / 8), size / 4, deep - 1);
+            Graph(panel, g2d, x - (size / 8), y + size - (size / 8), size / 4, deep - 1);
+            Graph(panel, g2d, x + size - (size / 8), y - (size / 4) + (size / 8), size / 4, deep - 1);
+            Graph(panel, g2d, x + size -(size / 8), y + size - (size / 8), size / 4, deep - 1);
+        }
+    }
+
+    public static void drawKochLine(JPanel panel, Graphics g, Point a, Point b, double fi, int s) {
+        if (s <= 0) {
+            // рисуем прямую, если достигнута необходимая глубина рекурсии.
+            g.drawLine(a.x, a.y, b.x, b.y);
+        } else {
+            // находим длину отрезка (a; b).
+            double length = Math.pow(Math.pow(b.y - a.y, 2)
+                    + Math.pow(b.x - a.x, 2), 0.5);
+            // находим длину 1/3 отрезка (a; b)
+            double length1of3 = length / 3;
+
+            // находим т., делящую отрезок как 1:3.
+            Point a1 = new Point(a.x
+                    + (int) Math.round((length1of3 * Math.cos(fi))), a.y
+                    + (int) Math.round((length1of3 * Math.sin(fi))));
+
+            // находим т., делящую отрезок как 2:3.
+            Point b1 = new Point(a1.x
+                    + (int) Math.round((length1of3 * Math.cos(fi))), a1.y
+                    + (int) Math.round((length1of3 * Math.sin(fi))));
+
+            // находим т., которая будет вершиной равностороннего
+            // треугольника.
+            Point c = new Point(a1.x
+                    + (int) Math
+                    .round((length1of3 * Math.cos(fi + Math.PI / 3))),
+                    a1.y
+                            + (int) Math.round((length1of3 * Math.sin(fi
+                            + Math.PI / 3))));
+
+            s--;
+            drawKochLine(panel, g, a1, c, fi + Math.PI / 3, s);
+            drawKochLine(panel, g, c, b1, fi - Math.PI / 3, s);
+
+            s--;
+            drawKochLine(panel, g, a, a1, fi, s);
+            drawKochLine(panel, g, b1, b, fi, s);
+        }
+    }
+}
